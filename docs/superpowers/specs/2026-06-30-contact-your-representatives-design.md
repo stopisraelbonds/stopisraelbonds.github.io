@@ -50,19 +50,57 @@ No email field — `mailto` sends from the visitor's own client.
 ## Data
 
 One JS object at the top of the section's `<script>`, clearly commented, so the
-client owns the addresses in one place:
+addresses live in one place. All addresses below were researched from each
+body's own official website (2026-06-30); **the client should re-verify before
+go-live.**
 
-```js
-// Fixed recipients
-const CSSF = "...";
-const MIN_FINANCE = "...";   // cc
-const ESMA = "...";          // cc
-// EU national competent authorities — fill in addresses
-const NCA = { DE: "", FR: "", IE: "", /* ...EU27... */ };
-```
+Fixed recipients:
 
-Addresses are supplied/verified by the client before merge. The repo ships with
-`""` placeholders for the NCAs and the three fixed addresses.
+| Body | Email | Field |
+|------|-------|-------|
+| CSSF | `direction@cssf.lu` | to |
+| Luxembourg Ministry of Finance | `Ministere-Finances@fi.etat.lu` | cc |
+| ESMA | `info@esma.europa.eu` | cc |
+
+National competent authorities (added as `cc` when that EU country is selected).
+Prospectus-specific inboxes preferred where published:
+
+| ISO | NCA | Email |
+|-----|-----|-------|
+| AT | FMA | `fma@fma.gv.at` |
+| BE | FSMA | `info.fin@fsma.be` |
+| BG | FSC | `bg_fsc@fsc.bg` |
+| HR | HANFA | `capital.markets@hanfa.hr` |
+| CY | CySEC | `info@cysec.gov.cy` |
+| CZ | ČNB | `podatelna@cnb.cz` |
+| DK | Finanstilsynet | `finanstilsynet@ftnet.dk` |
+| EE | Finantsinspektsioon | `info@fi.ee` |
+| FI | FIN-FSA | `kirjaamo@finanssivalvonta.fi` |
+| DE | BaFin | `poststelle@bafin.de` |
+| GR | HCMC | `info@cmc.gov.gr` |
+| HU | MNB | `ugyfelszolgalat@mnb.hu` |
+| IE | Central Bank of Ireland | `prospectus@centralbank.ie` |
+| IT | CONSOB | `protocollo@consob.it` |
+| LV | Latvijas Banka | `info@bank.lv` |
+| LT | Lietuvos bankas | `info@lb.lt` |
+| MT | MFSA | `communications@mfsa.mt` |
+| NL | AFM | `info@afm.nl` |
+| PL | KNF | `knf@knf.gov.pl` |
+| PT | CMVM | `cmvm@cmvm.pt` |
+| RO | ASF | `office@asfromania.ro` |
+| SK | NBS | `info@nbs.sk` |
+| SI | ATVP | `info@atvp.si` |
+| SE | Finansinspektionen | `finansinspektionen@fi.se` |
+
+**No NCA email (send proceeds without one):**
+- **FR** (AMF) and **ES** (CNMV) — publish no public email, web-form only. NCA
+  is `""`; the visitor still emails CSSF + Ministry + ESMA.
+- **LU** — the national regulator is the CSSF, already the primary recipient;
+  mapped to `""` to avoid a duplicate.
+
+Implementation: `NCA[isoCode]` returns `""` for FR/ES/LU and for non-EU, so the
+build logic simply skips an empty NCA. The dropdown still lists all EU 27 plus
+"Other / non-EU".
 
 ## Letter
 
