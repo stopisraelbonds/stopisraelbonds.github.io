@@ -187,6 +187,21 @@ section { padding: 6rem 2.5rem; }
 .form-submit:hover { background: #155736; }
 .form-note { font-size: 13px; color: #bbb; line-height: 1.6; }
 
+/* REPRESENT - BIANCO */
+.represent { background: var(--white); border-top: 2px solid #e8e8e8; }
+.represent .section-label { color: var(--red); }
+.represent .section-title { color: var(--black); }
+.represent-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 1rem; }
+.represent-intro { font-size: 17px; color: #555; line-height: 1.8; margin-bottom: 1.5rem; }
+.represent-intro strong { color: var(--black); font-weight: 700; }
+.represent-recipients { border: 2px solid #e8e8e8; border-radius: 10px; overflow: hidden; }
+.recipient { padding: 1rem 1.5rem; border-bottom: 2px solid #e8e8e8; }
+.recipient:last-child { border-bottom: none; }
+.recipient-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; font-weight: 700; margin-bottom: 2px; }
+.recipient-name { font-family: var(--display); font-weight: 900; font-size: 17px; color: var(--black); text-transform: uppercase; }
+.form-select { padding: 14px 16px; border: 2px solid #e8e8e8; border-radius: 8px; font-family: var(--body); font-size: 16px; color: var(--black); background: var(--white); outline: none; transition: border-color 0.2s; }
+.form-select:focus { border-color: var(--green); }
+
 /* FOOTER */
 footer { background: var(--black); padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
 .footer-logo { display: flex; flex-direction: column; gap: 3px; }
@@ -212,6 +227,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
     <li><a href="#bonds">The Bonds</a></li>
     <li><a href="#do">Take Action</a></li>
     <li><a href="#resources">Resources</a></li>
+    <li><a href="#represent">Email Reps</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#action" class="nav-cta">Act Now</a></li>
   </ul>
@@ -467,7 +483,152 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
   <p class="action-desc">Share this campaign. Pressure your representatives. Demand Luxembourg's financial sector aligns with what international law demands.</p>
   <div class="btns">
     <a href="#" class="btn-w">Share the campaign</a>
-    <a href="#" class="btn-o">Write to your MP</a>
+    <a href="#represent" class="btn-o">Email the regulators</a>
+  </div>
+</section>
+
+<!-- CONTACT REPRESENTATIVES - BIANCO -->
+<section class="represent" id="represent">
+  <div class="section-label">Take action</div>
+  <h2 class="section-title">Contact your<br>representatives</h2>
+  <div class="represent-layout">
+    <div>
+      <p class="represent-intro">Tell the regulators who can stop this what is happening in Luxembourg. Your message opens in your own email client, addressed and ready &mdash; <strong>you</strong> press send, so it arrives as a real letter from a real person.</p>
+      <p class="represent-intro">Every message goes to the <strong>CSSF</strong>, the <strong>Luxembourg Ministry of Finance</strong> and <strong>ESMA</strong>. Pick your country and we add your national financial regulator &mdash; the body that can refuse to passport these bonds.</p>
+      <div class="represent-recipients">
+        <div class="recipient">
+          <div class="recipient-label">To &middot; Luxembourg regulator</div>
+          <div class="recipient-name">CSSF</div>
+        </div>
+        <div class="recipient">
+          <div class="recipient-label">Cc &middot; Luxembourg government</div>
+          <div class="recipient-name">Ministry of Finance</div>
+        </div>
+        <div class="recipient">
+          <div class="recipient-label">Cc &middot; EU securities regulator</div>
+          <div class="recipient-name">ESMA</div>
+        </div>
+        <div class="recipient" id="rep-nca" style="display:none;">
+          <div class="recipient-label">Cc &middot; Your national regulator</div>
+          <div class="recipient-name"></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form-title">Send your message</div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label class="form-label" for="rep-country">Your country</label>
+          <select class="form-select" id="rep-country" onchange="updateReps()">
+            <option value="">Select your country…</option>
+            <option value="AT">Austria</option>
+            <option value="BE">Belgium</option>
+            <option value="BG">Bulgaria</option>
+            <option value="HR">Croatia</option>
+            <option value="CY">Cyprus</option>
+            <option value="CZ">Czechia</option>
+            <option value="DK">Denmark</option>
+            <option value="EE">Estonia</option>
+            <option value="FI">Finland</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+            <option value="GR">Greece</option>
+            <option value="HU">Hungary</option>
+            <option value="IE">Ireland</option>
+            <option value="IT">Italy</option>
+            <option value="LV">Latvia</option>
+            <option value="LT">Lithuania</option>
+            <option value="LU">Luxembourg</option>
+            <option value="MT">Malta</option>
+            <option value="NL">Netherlands</option>
+            <option value="PL">Poland</option>
+            <option value="PT">Portugal</option>
+            <option value="RO">Romania</option>
+            <option value="SK">Slovakia</option>
+            <option value="SI">Slovenia</option>
+            <option value="ES">Spain</option>
+            <option value="SE">Sweden</option>
+            <option value="OTHER">Other / outside the EU</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rep-name">Your name (added to the signature)</label>
+          <input class="form-input" type="text" id="rep-name" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rep-subject">Subject</label>
+          <input class="form-input" type="text" id="rep-subject" value="Withdraw approval of the Israel Bonds prospectus">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rep-body">Your message (edit freely)</label>
+          <textarea class="form-textarea" id="rep-body" style="min-height:260px;">Dear Sir or Madam,
+
+I am writing as a concerned member of the public about the Israel Bonds prospectus currently approved for sale in the European Union.
+
+Since 1 September 2025 the CSSF in Luxembourg has been the approving authority for this prospectus, making Luxembourg the last active gateway for Israel Bonds in the EU. The proceeds flow, unrestricted, into the general budget of the State of Israel — including its military spending — at a time when the International Court of Justice has found a plausible risk of genocide in Gaza.
+
+Under international law, states must not render aid or assistance in maintaining an illegal situation, and every state has a duty to prevent genocide. Approving or passporting a prospectus that helps finance these operations risks breaching those obligations.
+
+I therefore call on you to:
+ • suspend and refuse the Israel Bonds prospectus under Article 23 of the Prospectus Regulation;
+ • coordinate with the other EU competent authorities and notify ESMA, so these bonds can no longer be sold anywhere in the Union;
+ • publicly account for the role your institution has played so far.
+
+The law is clear. Please act.</textarea>
+        </div>
+        <button class="form-submit" onclick="sendToReps()">Open email &amp; send →</button>
+        <p class="form-note" id="rep-note">Your name is added below the signature. Nothing is sent until you press send in your own email app.</p>
+      </div>
+      <script>
+      // Recipients. Researched from each body's official site 2026-06-30 — re-verify before relying on them.
+      var REP = { CSSF: "direction@cssf.lu", MOF: "Ministere-Finances@fi.etat.lu", ESMA: "info@esma.europa.eu" };
+      // EU national competent authorities (the CSSF-equivalent in each country).
+      // "" email = no public address (web-form only: FR, ES) or already covered by CSSF (LU) — send proceeds without it.
+      var NCA = {
+        AT:["FMA","fma@fma.gv.at"], BE:["FSMA","info.fin@fsma.be"], BG:["FSC","bg_fsc@fsc.bg"],
+        HR:["HANFA","capital.markets@hanfa.hr"], CY:["CySEC","info@cysec.gov.cy"],
+        CZ:["Czech National Bank","podatelna@cnb.cz"], DK:["Finanstilsynet","finanstilsynet@ftnet.dk"],
+        EE:["Finantsinspektsioon","info@fi.ee"], FI:["FIN-FSA","kirjaamo@finanssivalvonta.fi"],
+        FR:["AMF",""], DE:["BaFin","poststelle@bafin.de"], GR:["HCMC","info@cmc.gov.gr"],
+        HU:["MNB","ugyfelszolgalat@mnb.hu"], IE:["Central Bank of Ireland","prospectus@centralbank.ie"],
+        IT:["CONSOB","protocollo@consob.it"], LV:["Latvijas Banka","info@bank.lv"],
+        LT:["Lietuvos bankas","info@lb.lt"], LU:["CSSF","" ], MT:["MFSA","communications@mfsa.mt"],
+        NL:["AFM","info@afm.nl"], PL:["KNF","knf@knf.gov.pl"], PT:["CMVM","cmvm@cmvm.pt"],
+        RO:["ASF","office@asfromania.ro"], SK:["NBS","info@nbs.sk"], SI:["ATVP","info@atvp.si"],
+        ES:["CNMV",""], SE:["Finansinspektionen","finansinspektionen@fi.se"]
+      };
+      function updateReps() {
+        var code = document.getElementById('rep-country').value;
+        var row = document.getElementById('rep-nca');
+        var nca = NCA[code];
+        if (nca && nca[1]) {
+          row.querySelector('.recipient-name').textContent = nca[0];
+          row.style.display = 'block';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+      function sendToReps() {
+        var note = document.getElementById('rep-note');
+        var code = document.getElementById('rep-country').value;
+        if (!code) { note.textContent = 'Please select your country first.'; note.style.color = '#E8001D'; return; }
+        var name = document.getElementById('rep-name').value.trim();
+        var subject = document.getElementById('rep-subject').value.trim();
+        var body = document.getElementById('rep-body').value.trim();
+        var cc = [REP.MOF, REP.ESMA];
+        var nca = NCA[code];
+        if (nca && nca[1]) cc.push(nca[1]);
+        var sig = '\n\nYours sincerely,\n' + (name || 'A concerned member of the public');
+        var href = 'mailto:' + encodeURIComponent(REP.CSSF) +
+          '?cc=' + cc.map(encodeURIComponent).join(',') +
+          '&subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(body + sig);
+        window.location.href = href;
+        note.textContent = 'Your email client should open with the message ready. Press send there to deliver it.';
+        note.style.color = '#1D7A4A';
+      }
+      </script>
+    </div>
   </div>
 </section>
 
