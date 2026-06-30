@@ -6,8 +6,9 @@
 <title>Stop Israel Bonds</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="theme-color" content="#E8001D">
-
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- 100% privacy-first analytics -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -21,12 +22,28 @@
 html { scroll-behavior: smooth; }
 body { background: var(--white); color: var(--black); font-family: var(--body); font-size: 18px; line-height: 1.75; overflow-x: hidden; }
 
+/* SKIP LINK */
+.skip-link { position: absolute; top: -40px; left: 0; background: var(--black); color: var(--white); padding: 12px 18px; font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; z-index: 200; border-radius: 0 0 6px 0; }
+.skip-link:focus { top: 0; }
+
+/* FOCUS RINGS */
+a:focus-visible, button:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 4px; }
+.form-input:focus-visible, .form-textarea:focus-visible, .form-select:focus-visible { outline: 3px solid var(--green); outline-offset: 1px; }
+.facts a:focus-visible, .action a:focus-visible, .action button:focus-visible { outline-color: var(--white); }
+.law a:focus-visible, .data a:focus-visible { outline-color: var(--white); }
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
 /* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 2.5rem; background: var(--white); border-bottom: 2px solid #eee; }
 .nav-logo { font-family: var(--display); font-weight: 900; font-size: 20px; text-transform: uppercase; color: var(--black); text-decoration: none; letter-spacing: 0.04em; }
 .nav-logo .war { color: var(--red); }
 .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-.nav-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #999; text-decoration: none; font-weight: 700; transition: color 0.2s; }
+.nav-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; text-decoration: none; font-weight: 700; transition: color 0.2s; }
 .nav-links a:hover { color: var(--black); }
 .nav-cta { background: var(--green) !important; color: var(--white) !important; padding: 8px 20px; border-radius: 20px; font-weight: 800 !important; }
 
@@ -44,12 +61,12 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .hero-title .b3 span { color: var(--white); }
 .hero-sub-block { margin-top: 2.5rem; max-width: 680px; }
 .hero-tagline { font-family: var(--display); font-weight: 900; font-size: clamp(20px, 3vw, 32px); text-transform: uppercase; color: var(--black); line-height: 1.1; margin-bottom: 0.6rem; }
-.hero-sub { font-size: 16px; color: #666; line-height: 1.7; }
+.hero-sub { font-size: 16px; color: #4a4a4a; line-height: 1.7; }
 .hero-sub strong { color: var(--black); font-weight: 700; }
 .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 4rem; }
-.hero-hashtag { font-family: var(--display); font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em; color: #ccc; }
-.hero-scroll { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #ccc; display: flex; align-items: center; gap: 8px; }
-.scroll-line { width: 1px; height: 44px; background: #ddd; display: block; }
+.hero-hashtag { font-family: var(--display); font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em; color: #666; }
+.hero-scroll { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #666; display: flex; align-items: center; gap: 8px; }
+.scroll-line { width: 1px; height: 44px; background: #999; display: block; }
 
 /* SECTION BASICS */
 section { padding: 6rem 2.5rem; }
@@ -58,32 +75,32 @@ section { padding: 6rem 2.5rem; }
 
 /* FACTS - ROSSO */
 .facts { background: var(--red); }
-.facts .section-label { color: rgba(255,255,255,0.5); }
+.facts .section-label { color: rgba(255,255,255,0.92); }
 .facts .section-title { color: var(--white); }
-.facts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(0,0,0,0.15); border: 2px solid rgba(0,0,0,0.15); border-radius: 10px; overflow: hidden; margin-top: 1rem; }
-.fact-card { background: rgba(255,255,255,0.08); padding: 2.5rem 2rem; }
+.facts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(0,0,0,0.2); border: 2px solid rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden; margin-top: 1rem; }
+.fact-card { background: rgba(0,0,0,0.12); padding: 2.5rem 2rem; }
 .fact-num { font-family: var(--display); font-weight: 900; font-size: 72px; line-height: 1; color: var(--white); }
-.fact-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; color: rgba(255,255,255,0.6); margin: 0.5rem 0 0.75rem; }
-.fact-desc { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.7; }
-.fact-source { display: inline-block; margin-top: 1rem; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); font-weight: 800; }
+.fact-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; color: rgba(255,255,255,0.95); margin: 0.5rem 0 0.75rem; }
+.fact-desc { font-size: 16px; color: rgba(255,255,255,0.95); line-height: 1.7; }
+.fact-source { display: inline-block; margin-top: 1rem; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); font-weight: 800; }
 
 /* LAW - VERDE */
 .law { background: var(--green); }
-.law .section-label { color: rgba(255,255,255,0.4); }
+.law .section-label { color: rgba(255,255,255,0.9); }
 .law .section-title { color: var(--white); }
 .law-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-.law-duties { border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; overflow: hidden; }
-.duty { padding: 1.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; gap: 1.25rem; align-items: flex-start; }
+.law-duties { border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; overflow: hidden; }
+.duty { padding: 1.75rem; border-bottom: 1px solid rgba(255,255,255,0.18); display: flex; gap: 1.25rem; align-items: flex-start; }
 .duty:last-child { border-bottom: none; }
-.duty-num { font-family: var(--display); font-weight: 900; font-size: 36px; color: rgba(255,255,255,0.08); line-height: 1; flex-shrink: 0; width: 44px; }
+.duty-num { font-family: var(--display); font-weight: 900; font-size: 36px; color: rgba(255,255,255,0.45); line-height: 1; flex-shrink: 0; width: 44px; }
 .duty-title { font-family: var(--display); font-weight: 900; font-size: 21px; text-transform: uppercase; color: var(--white); margin-bottom: 6px; }
-.duty-text { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; }
-.duty-badge { display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.22); }
+.duty-text { font-size: 16px; color: rgba(255,255,255,0.95); line-height: 1.7; }
+.duty-badge { display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
 .law-right { display: flex; flex-direction: column; gap: 1.5rem; }
-.law-quote { padding: 2rem; background: rgba(0,0,0,0.12); border-radius: 8px; }
+.law-quote { padding: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; }
 .law-quote-text { font-family: var(--display); font-weight: 900; font-size: 22px; text-transform: uppercase; color: var(--white); line-height: 1.25; margin-bottom: 0.75rem; }
-.law-quote-attr { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); font-weight: 700; }
-.law-note { padding: 1.5rem; background: rgba(0,0,0,0.1); border-radius: 6px; font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+.law-quote-attr { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); font-weight: 700; }
+.law-note { padding: 1.5rem; background: rgba(0,0,0,0.18); border-radius: 6px; font-size: 16px; color: rgba(255,255,255,0.95); line-height: 1.7; }
 .law-note strong { color: var(--white); font-weight: 700; }
 
 /* BONDS - BIANCO */
@@ -97,27 +114,27 @@ section { padding: 6rem 2.5rem; }
 .flow { border-radius: 8px; overflow: hidden; border: 2px solid #e8e8e8; }
 .flow-step { padding: 1.25rem 1.5rem; border-bottom: 2px solid #e8e8e8; background: var(--white); }
 .flow-arrow { text-align: center; padding: 7px; background: #f7f7f7; border-bottom: 2px solid #e8e8e8; color: var(--green); font-weight: 900; font-size: 16px; }
-.flow-step-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; font-weight: 700; margin-bottom: 3px; }
+.flow-step-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #666; font-weight: 700; margin-bottom: 3px; }
 .flow-step-title { font-family: var(--display); font-weight: 900; font-size: 17px; color: var(--black); text-transform: uppercase; }
 .flow-end { padding: 1.25rem 1.5rem; background: var(--green); }
-.flow-end .flow-step-label { color: rgba(255,255,255,0.4); }
+.flow-end .flow-step-label { color: rgba(255,255,255,0.88); }
 .flow-end .flow-step-title { color: var(--white); }
 
 /* WAR BY NUMBERS - VERDE */
 .data { background: var(--green); }
-.data .section-label { color: rgba(255,255,255,0.4); }
+.data .section-label { color: rgba(255,255,255,0.9); }
 .data .section-title { color: var(--white); }
-.data-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: rgba(0,0,0,0.15); border: 2px solid rgba(0,0,0,0.15); border-radius: 10px; overflow: hidden; margin-top: 1rem; }
-.data-card { background: rgba(255,255,255,0.07); padding: 2.25rem 2rem; }
-.data-card-head { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.38); font-weight: 800; margin-bottom: 0.75rem; }
+.data-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: rgba(0,0,0,0.22); border: 2px solid rgba(0,0,0,0.22); border-radius: 10px; overflow: hidden; margin-top: 1rem; }
+.data-card { background: rgba(0,0,0,0.12); padding: 2.25rem 2rem; }
+.data-card-head { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 800; margin-bottom: 0.75rem; }
 .data-card-num { font-family: var(--display); font-weight: 900; font-size: 60px; line-height: 1; color: var(--white); margin-bottom: 0.5rem; }
-.data-card-num .unit { color: rgba(255,255,255,0.4); font-size: 44px; }
-.data-card-label { font-size: 16px; color: rgba(255,255,255,0.58); line-height: 1.7; }
-.data-card-source { display: inline-block; margin-top: 0.75rem; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); font-weight: 700; }
-.data-pullquote { background: rgba(0,0,0,0.18); padding: 2.25rem 2.5rem; border-radius: 0 0 8px 8px; margin-top: 2px; }
+.data-card-num .unit { color: rgba(255,255,255,0.78); font-size: 44px; }
+.data-card-label { font-size: 16px; color: rgba(255,255,255,0.95); line-height: 1.7; }
+.data-card-source { display: inline-block; margin-top: 0.75rem; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.82); font-weight: 700; }
+.data-pullquote { background: rgba(0,0,0,0.25); padding: 2.25rem 2.5rem; border-radius: 0 0 8px 8px; margin-top: 2px; }
 .data-pullquote-text { font-family: var(--display); font-weight: 900; font-size: clamp(18px, 2.5vw, 26px); text-transform: uppercase; color: var(--white); line-height: 1.2; margin-bottom: 0.75rem; }
-.data-pullquote-text em { color: rgba(255,255,255,0.42); font-style: normal; }
-.data-pullquote-attr { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.28); font-weight: 700; }
+.data-pullquote-text em { color: rgba(255,255,255,0.85); font-style: normal; }
+.data-pullquote-attr { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); font-weight: 700; }
 
 /* WHAT TO DO - BIANCO */
 .do { background: var(--white); }
@@ -125,9 +142,9 @@ section { padding: 6rem 2.5rem; }
 .do .section-title { color: var(--black); }
 .do-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #e8e8e8; border: 2px solid #e8e8e8; border-radius: 10px; overflow: hidden; margin-top: 1rem; }
 .do-card { background: var(--white); padding: 2.5rem 2rem; }
-.do-num { font-family: var(--display); font-weight: 900; font-size: 52px; color: var(--green); opacity: 0.12; line-height: 1; margin-bottom: 1rem; }
+.do-num { font-family: var(--display); font-weight: 900; font-size: 52px; color: var(--green); opacity: 0.35; line-height: 1; margin-bottom: 1rem; }
 .do-title { font-family: var(--display); font-weight: 900; font-size: 20px; text-transform: uppercase; color: var(--black); margin-bottom: 0.75rem; line-height: 1.15; }
-.do-text { font-size: 16px; color: #555; line-height: 1.7; }
+.do-text { font-size: 16px; color: #4a4a4a; line-height: 1.7; }
 .do-tag { display: inline-block; margin-top: 1.25rem; background: var(--green); color: var(--white); font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; }
 
 /* RESOURCES - BIANCO */
@@ -138,14 +155,14 @@ section { padding: 6rem 2.5rem; }
 .res-card { background: var(--white); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1rem; }
 .res-type { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); font-weight: 800; }
 .res-title { font-family: var(--display); font-weight: 900; font-size: 22px; text-transform: uppercase; color: var(--black); line-height: 1.15; }
-.res-desc { font-size: 16px; color: #555; line-height: 1.7; flex: 1; }
-.res-authors { font-size: 13px; color: #aaa; }
+.res-desc { font-size: 16px; color: #4a4a4a; line-height: 1.7; flex: 1; }
+.res-authors { font-size: 13px; color: #5e5e5e; }
 .res-link { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: var(--white); font-family: var(--body); font-weight: 800; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; border-radius: 20px; text-decoration: none; align-self: flex-start; transition: background 0.2s; }
 .res-link:hover { background: #155736; }
 
 /* ACTION - ROSSO */
 .action { background: var(--red); text-align: center; padding: 9rem 2.5rem; }
-.action .section-label { color: rgba(255,255,255,0.4); }
+.action .section-label { color: rgba(255,255,255,0.92); }
 .action-title { display: flex; flex-direction: column; gap: 5px; align-items: center; margin-bottom: 0.5rem; }
 .action-title .b1 { background: var(--white); padding: 6px 24px 4px; display: inline-block; }
 .action-title .b2 { background: var(--black); padding: 6px 24px 4px; display: inline-block; margin-left: 18px; }
@@ -154,13 +171,13 @@ section { padding: 6rem 2.5rem; }
 .action-title .b1 span { color: var(--red); }
 .action-title .b2 span { color: var(--red); }
 .action-title .b3 span { color: var(--white); }
-.action-tagline { font-family: var(--display); font-weight: 900; font-size: clamp(18px, 2.5vw, 28px); text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 2.5rem; }
-.action-desc { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 3rem; line-height: 1.75; }
+.action-tagline { font-family: var(--display); font-weight: 900; font-size: clamp(18px, 2.5vw, 28px); text-transform: uppercase; color: rgba(255,255,255,0.92); margin-bottom: 2.5rem; }
+.action-desc { font-size: 17px; color: rgba(255,255,255,0.95); max-width: 480px; margin: 0 auto 3rem; line-height: 1.75; }
 .btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .btn-w { background: var(--white); color: var(--red); font-family: var(--body); font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 15px 36px; border: none; cursor: pointer; border-radius: 20px; text-decoration: none; }
-.btn-o { background: transparent; color: var(--white); font-family: var(--body); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 15px 36px; border: 1.5px solid rgba(255,255,255,0.35); cursor: pointer; border-radius: 20px; text-decoration: none; }
+.btn-o { background: transparent; color: var(--white); font-family: var(--body); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 15px 36px; border: 2px solid var(--white); cursor: pointer; border-radius: 20px; text-decoration: none; }
 .btn-w:hover { opacity: 0.9; }
-.btn-o:hover { border-color: rgba(255,255,255,0.7); }
+.btn-o:hover { background: rgba(255,255,255,0.15); }
 
 /* CONTACT - BIANCO */
 .contact { background: var(--white); border-top: 2px solid #e8e8e8; }
@@ -168,45 +185,47 @@ section { padding: 6rem 2.5rem; }
 .contact .section-title { color: var(--black); }
 .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 1rem; }
 .contact-socials { display: flex; flex-direction: column; gap: 1rem; }
-.contact-intro { font-size: 17px; color: #555; line-height: 1.8; margin-bottom: 1.5rem; }
-.social-link { display: flex; align-items: center; gap: 1.25rem; padding: 1.25rem 1.5rem; border: 2px solid #e8e8e8; border-radius: 10px; text-decoration: none; color: var(--black); transition: border-color 0.2s, background 0.2s; }
+.contact-intro { font-size: 17px; color: #4a4a4a; line-height: 1.8; margin-bottom: 1.5rem; }
+.social-link { display: flex; align-items: center; gap: 1.25rem; padding: 1.25rem 1.5rem; border: 2px solid #949494; border-radius: 10px; text-decoration: none; color: var(--black); transition: border-color 0.2s, background 0.2s; }
 .social-link:hover { border-color: var(--green); background: #f7fdf9; }
 .social-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .social-icon svg { width: 22px; height: 22px; }
-.social-icon.email { background: #f0f0f0; }
+.social-icon.email { background: #e0e0e0; }
 .social-icon.instagram { background: #fce4ec; }
 .social-icon.facebook { background: #e3f0fc; }
-.social-info-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 800; color: #bbb; margin-bottom: 2px; }
+.social-info-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 800; color: #5e5e5e; margin-bottom: 2px; }
 .social-info-name { font-family: var(--display); font-weight: 900; font-size: 18px; text-transform: uppercase; color: var(--black); }
 .contact-form { display: flex; flex-direction: column; gap: 1rem; }
 .contact-form-title { font-family: var(--display); font-weight: 900; font-size: 28px; text-transform: uppercase; color: var(--black); margin-bottom: 0.5rem; }
 .form-group { display: flex; flex-direction: column; gap: 6px; }
-.form-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 800; color: #999; }
-.form-input { padding: 14px 16px; border: 2px solid #e8e8e8; border-radius: 8px; font-family: var(--body); font-size: 16px; color: var(--black); background: var(--white); outline: none; transition: border-color 0.2s; }
+.form-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 800; color: #555; }
+.form-input { padding: 14px 16px; border: 2px solid #949494; border-radius: 8px; font-family: var(--body); font-size: 16px; color: var(--black); background: var(--white); transition: border-color 0.2s; }
 .form-input:focus { border-color: var(--green); }
-.form-textarea { padding: 14px 16px; border: 2px solid #e8e8e8; border-radius: 8px; font-family: var(--body); font-size: 16px; color: var(--black); background: var(--white); outline: none; transition: border-color 0.2s; resize: vertical; min-height: 140px; }
+.form-input::placeholder { color: #6b6b6b; }
+.form-textarea { padding: 14px 16px; border: 2px solid #949494; border-radius: 8px; font-family: var(--body); font-size: 16px; color: var(--black); background: var(--white); transition: border-color 0.2s; resize: vertical; min-height: 140px; }
 .form-textarea:focus { border-color: var(--green); }
+.form-textarea::placeholder { color: #6b6b6b; }
 .form-submit { background: var(--green); color: var(--white); font-family: var(--body); font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 15px 36px; border: none; cursor: pointer; border-radius: 20px; align-self: flex-start; transition: background 0.2s; }
 .form-submit:hover { background: #155736; }
-.form-note { font-size: 13px; color: #bbb; line-height: 1.6; }
+.form-note { font-size: 13px; color: #5e5e5e; line-height: 1.6; }
 
 /* REPRESENT - BIANCO */
 .represent { background: var(--white); border-top: 2px solid #e8e8e8; }
 .represent .section-label { color: var(--red); }
 .represent .section-title { color: var(--black); }
 .represent-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 1rem; }
-.represent-intro { font-size: 17px; color: #555; line-height: 1.8; margin-bottom: 1.5rem; }
+.represent-intro { font-size: 17px; color: #4a4a4a; line-height: 1.8; margin-bottom: 1.5rem; }
 .represent-intro strong { color: var(--black); font-weight: 700; }
-.represent-recipients { border: 2px solid #e8e8e8; border-radius: 10px; overflow: hidden; }
-.recipient { padding: 1rem 1.5rem; border-bottom: 2px solid #e8e8e8; }
+.represent-recipients { border: 2px solid #949494; border-radius: 10px; overflow: hidden; }
+.recipient { padding: 1rem 1.5rem; border-bottom: 2px solid #e0e0e0; }
 .recipient:last-child { border-bottom: none; }
-.recipient-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; font-weight: 700; margin-bottom: 2px; }
+.recipient-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #5e5e5e; font-weight: 700; margin-bottom: 2px; }
 .recipient-name { font-family: var(--display); font-weight: 900; font-size: 17px; color: var(--black); text-transform: uppercase; }
-.form-select { padding: 14px 16px; border: 2px solid #e8e8e8; border-radius: 8px; font-family: var(--body); font-size: 16px; color: var(--black); background: var(--white); outline: none; transition: border-color 0.2s; }
+.form-select { padding: 14px 16px; border: 2px solid #949494; border-radius: 8px; font-family: var(--body); font-size: 16px; color: var(--black); background: var(--white); transition: border-color 0.2s; }
 .form-select:focus { border-color: var(--green); }
-.form-hint { font-size: 13px; color: #888; line-height: 1.5; margin-top: -2px; }
+.form-hint { font-size: 13px; color: #5e5e5e; line-height: 1.5; margin-top: -2px; }
 .form-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
-.btn-alt { background: var(--white); color: var(--green); border: 2px solid var(--green); font-family: var(--body); font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; border-radius: 20px; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+.btn-alt { background: var(--white); color: var(--green); border: 2px solid var(--green); font-family: var(--body); font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; border-radius: 20px; cursor: pointer; transition: background 0.2s; }
 .btn-alt:hover { background: #f0faf4; }
 
 /* FOOTER */
@@ -219,38 +238,194 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
 .footer-logo .b1 span { color: var(--white); }
 .footer-logo .b2 span { color: var(--red); }
 .footer-logo .b3 span { color: var(--white); }
-.footer-sub { font-size: 12px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
-.footer-hash { font-family: var(--display); font-weight: 900; font-size: 18px; text-transform: uppercase; color: rgba(255,255,255,0.1); }
+.footer-sub { font-size: 12px; color: rgba(255,255,255,0.75); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+.footer-hash { font-family: var(--display); font-weight: 900; font-size: 18px; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+
+/* NAV TOGGLE (hidden on desktop) */
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 10px; width: 44px; height: 44px; position: relative; }
+.nav-toggle span { display: block; position: absolute; left: 10px; right: 10px; height: 2px; background: var(--black); transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease; }
+.nav-toggle span:nth-child(1) { top: 14px; }
+.nav-toggle span:nth-child(2) { top: 21px; }
+.nav-toggle span:nth-child(3) { top: 28px; }
+.nav-toggle.open span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+/* ============== MOBILE ============== */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+
+  /* NAV */
+  nav { padding: 0.65rem 1.25rem; flex-wrap: wrap; }
+  .nav-toggle { display: block; }
+  .nav-links { display: none; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 0; margin-top: 0.65rem; border-top: 2px solid #eee; padding-top: 0.5rem; }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 0.85rem 0.25rem; font-size: 13px; border-bottom: 1px solid #f0f0f0; color: var(--black); }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-cta { display: inline-block !important; margin-top: 0.5rem; text-align: center; padding: 10px 20px !important; }
+
+  /* SECTIONS */
+  section { padding: 4rem 1.25rem; }
+  .section-title { font-size: clamp(34px, 9vw, 48px); margin-bottom: 1.75rem; }
+
+  /* HERO */
+  .hero { padding: 7rem 1.25rem 3.5rem; min-height: auto; }
+  .hero-title { gap: 4px; }
+  .hero-title span { font-size: clamp(48px, 16vw, 84px); white-space: normal; }
+  .hero-title .b1 { padding: 4px 10px 2px; }
+  .hero-title .b2 { padding: 4px 10px 2px; margin-left: 12px; }
+  .hero-title .b3 { padding: 4px 10px 2px; margin-left: 24px; }
+  .hero-sub-block { margin-top: 1.75rem; }
+  .hero-tagline { font-size: clamp(18px, 5.5vw, 24px); }
+  .hero-sub { font-size: 15px; }
+  .hero-bottom { margin-top: 2.5rem; }
+  .hero-eyebrow { font-size: 11px; margin-bottom: 1rem; }
+
+  /* FACTS */
+  .facts-grid { grid-template-columns: 1fr; }
+  .fact-card { padding: 2rem 1.5rem; }
+  .fact-num { font-size: 56px; }
+  .fact-desc { font-size: 15px; }
+
+  /* LAW */
+  .law-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .duty { padding: 1.25rem; gap: 0.85rem; }
+  .duty-num { font-size: 30px; width: 36px; }
+  .duty-title { font-size: 18px; }
+  .duty-text { font-size: 15px; }
+  .law-quote { padding: 1.5rem; }
+  .law-quote-text { font-size: 19px; }
+  .law-note { padding: 1.25rem; font-size: 15px; }
+
+  /* BONDS */
+  .bonds-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .bonds-text { font-size: 16px; }
+  .flow-step { padding: 1rem 1.25rem; }
+  .flow-step-title { font-size: 16px; }
+  .flow-end { padding: 1rem 1.25rem; }
+
+  /* DATA */
+  .data-grid { grid-template-columns: 1fr; }
+  .data-card { padding: 1.75rem 1.5rem; }
+  .data-card-num { font-size: 48px; }
+  .data-card-num .unit { font-size: 34px; }
+  .data-card-label { font-size: 15px; }
+  .data-pullquote { padding: 1.75rem 1.5rem; }
+  .data-pullquote-text { font-size: clamp(17px, 4.5vw, 22px); }
+
+  /* DO */
+  .do-grid { grid-template-columns: 1fr; }
+  .do-card { padding: 2rem 1.5rem; }
+  .do-num { font-size: 44px; margin-bottom: 0.75rem; }
+  .do-title { font-size: 18px; }
+  .do-text { font-size: 15px; }
+
+  /* RESOURCES */
+  .resources-grid { grid-template-columns: 1fr; }
+  .res-card { padding: 2rem 1.5rem; }
+  .res-title { font-size: 20px; }
+  .res-desc { font-size: 15px; }
+
+  /* ACTION */
+  .action { padding: 5rem 1.25rem; }
+  .action-title { gap: 4px; }
+  .action-title span { font-size: clamp(44px, 14vw, 76px); }
+  .action-title .b1 { padding: 4px 14px 2px; }
+  .action-title .b2 { padding: 4px 14px 2px; margin-left: 10px; }
+  .action-title .b3 { padding: 4px 14px 2px; margin-left: 20px; }
+  .action-tagline { font-size: clamp(16px, 4.5vw, 22px); margin-bottom: 1.75rem; }
+  .action-desc { font-size: 15px; margin-bottom: 2rem; }
+  .btn-w, .btn-o { padding: 13px 24px; font-size: 12px; }
+
+  /* CONTACT */
+  .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-intro { font-size: 15px; }
+  .social-link { padding: 1rem 1.25rem; gap: 1rem; }
+  .social-icon { width: 40px; height: 40px; }
+  .social-info-name { font-size: 16px; }
+  .contact-form-title { font-size: 24px; }
+  .form-input, .form-textarea, .form-select { font-size: 16px; padding: 12px 14px; }
+
+  /* REPRESENT */
+  .represent-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .represent-intro { font-size: 15px; }
+  .recipient { padding: 0.85rem 1.25rem; }
+  .recipient-name { font-size: 16px; }
+  .form-actions { gap: 0.5rem; }
+  .btn-alt { padding: 12px 22px; font-size: 12px; }
+
+  /* FOOTER */
+  footer { padding: 2rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .footer-logo span { font-size: 20px; }
+  .footer-sub { font-size: 11px; }
+}
+
+/* ============== SMALL PHONES ============== */
+@media (max-width: 400px) {
+  section { padding: 3.5rem 1rem; }
+  nav { padding: 0.6rem 1rem; }
+  .hero { padding: 6.5rem 1rem 3rem; }
+  .hero-title span { font-size: clamp(42px, 15vw, 64px); }
+  .action { padding: 4.5rem 1rem; }
+  .action-title span { font-size: clamp(38px, 13vw, 60px); }
+}
 </style>
-<!-- 100% privacy-first analytics -->
-<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Stop <span class="war">Israel</span> Bonds</a>
-  <ul class="nav-links">
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#facts">Facts</a></li>
     <li><a href="#law">The Law</a></li>
     <li><a href="#bonds">The Bonds</a></li>
-    <li><a href="#do">Take Action</a></li>
+    <li><a href="#do">Luxembourg's Options</a></li>
     <li><a href="#resources">Resources</a></li>
     <li><a href="#represent">Email Reps</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#action" class="nav-cta">Act Now</a></li>
   </ul>
 </nav>
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var links = document.getElementById('nav-links');
+    if (!btn || !links) return;
+    btn.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    links.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        links.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+      }
+    });
+  })();
+</script>
+
+<main id="main">
 
 <!-- HERO - ROSSO -->
-<section class="hero">
-  <div class="hero-grid"></div>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-eyebrow">A civic campaign · Luxembourg · 2026</div>
-  <div class="hero-title">
-    <div class="b1"><span>Stop</span></div>
-    <div class="b2"><span>Israel</span></div>
-    <div class="b3"><span>Bonds</span></div>
-  </div>
+  <h1 class="hero-title" id="hero-title">
+    <span class="b1"><span>Stop</span></span>
+    <span class="b2"><span>Israel</span></span>
+    <span class="b3"><span>Bonds</span></span>
+  </h1>
   <div class="hero-sub-block">
     <div class="hero-tagline">The law is clear. Stop financing international crimes.</div>
     <div class="hero-sub"><strong>Luxembourg finances illegal occupation and war.</strong> International law demands it stops.</div>
@@ -469,31 +644,51 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
       <div class="res-title">The Approval of the Israel Bonds Prospectus in Luxembourg</div>
       <div class="res-desc">A comprehensive legal and financial analysis covering the prospectus mechanism, Israel's war economy, the international legal framework, and concrete recommendations for the CSSF and the Luxembourg government.</div>
       <div class="res-authors">Anastasopoulou · Obeidat (Nashama) · Patone (ANPI Lussemburgo) · Sesti (LetzActForPalestine) · Supported by Collectives for Palestine</div>
-      <a href="https://drive.google.com/file/d/1Q051vToXaLE8Jr6rZ3G-c4CfqEC4cGI7/view?usp=sharing" target="_blank" class="res-link">Download Report ↗</a>
+      <a href="https://drive.google.com/file/d/1Q051vToXaLE8Jr6rZ3G-c4CfqEC4cGI7/view?usp=sharing" target="_blank" rel="noopener" class="res-link">Download Report ↗</a>
     </div>
     <div class="res-card">
       <div class="res-type">Public conference · YouTube</div>
       <div class="res-title">Conference on Luxembourg's Obligations and the Israel Bonds</div>
       <div class="res-desc">Legal experts, civil society representatives and political figures discuss Luxembourg's obligations under international law and the role of the CSSF in facilitating Israel's access to European capital markets.</div>
-      <a href="https://www.youtube.com/watch?v=pv1vqYp2PYA&t=15522s" target="_blank" class="res-link">Watch on YouTube ↗</a>
+      <a href="https://www.youtube.com/watch?v=pv1vqYp2PYA&t=15522s" target="_blank" rel="noopener" class="res-link">Watch on YouTube ↗</a>
     </div>
   </div>
 </section>
 
 <!-- ACTION - ROSSO -->
-<section class="action" id="action">
-  <div class="section-label">Join the campaign</div>
-  <div class="action-title">
+<section class="action" id="action" aria-labelledby="action-heading">
+  <h2 class="section-label" id="action-heading">Join the campaign</h2>
+  <div class="action-title" aria-hidden="true">
     <div class="b1"><span>Stop</span></div>
     <div class="b2"><span>Israel</span></div>
     <div class="b3"><span>Bonds</span></div>
   </div>
-  <div class="action-tagline">The law is clear. Stop financing international crimes.</div>
+  <p class="action-tagline">The law is clear. Stop financing international crimes.</p>
   <p class="action-desc">Share this campaign. Pressure your representatives. Demand Luxembourg's financial sector aligns with what international law demands.</p>
   <div class="btns">
-    <a href="#" class="btn-w">Share the campaign</a>
+    <button type="button" class="btn-w" id="share-btn">Share the campaign</button>
     <a href="#represent" class="btn-o">Email the regulators</a>
   </div>
+  <script>
+  (function () {
+    var btn = document.getElementById('share-btn');
+    if (!btn) return;
+    btn.addEventListener('click', async function () {
+      var data = { title: 'Stop Israel Bonds', text: 'The law is clear. Stop financing international crimes.', url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (e) { /* user cancelled */ }
+      } else if (navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          btn.textContent = 'Link copied ✓';
+          setTimeout(function () { btn.textContent = 'Share the campaign'; }, 2500);
+        } catch (e) { window.prompt('Copy this link:', window.location.href); }
+      } else {
+        window.prompt('Copy this link:', window.location.href);
+      }
+    });
+  })();
+  </script>
 </section>
 
 <!-- CONTACT REPRESENTATIVES - BIANCO -->
@@ -524,11 +719,11 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
       </div>
     </div>
     <div>
-      <div class="contact-form-title">Send your message</div>
-      <div class="contact-form">
+      <h3 class="contact-form-title">Send your message</h3>
+      <form class="contact-form" id="rep-form" novalidate>
         <div class="form-group">
           <label class="form-label" for="rep-country">Your country</label>
-          <select class="form-select" id="rep-country" onchange="updateReps()">
+          <select class="form-select" id="rep-country" name="country" required>
             <option value="">Select your country…</option>
             <option value="AT">Austria</option>
             <option value="BE">Belgium</option>
@@ -562,7 +757,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
         </div>
         <div class="form-group">
           <label class="form-label" for="rep-name">Your name (added to the signature)</label>
-          <input class="form-input" type="text" id="rep-name" placeholder="Full name">
+          <input class="form-input" type="text" id="rep-name" name="name" placeholder="Full name" autocomplete="name">
         </div>
         <div class="form-group">
           <label class="form-label" for="rep-why">Why this matters to you (one or two lines)</label>
@@ -571,7 +766,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
         </div>
         <div class="form-group">
           <label class="form-label" for="rep-subject">Subject (edit it — varied subjects land better)</label>
-          <input class="form-input" type="text" id="rep-subject" value="Withdraw approval of the Israel Bonds prospectus">
+          <input class="form-input" type="text" id="rep-subject" name="subject" value="Withdraw approval of the Israel Bonds prospectus">
         </div>
         <div class="form-group">
           <label class="form-label" for="rep-body">Your message (edit freely)</label>
@@ -591,120 +786,124 @@ I therefore call on you to:
 The law is clear. Please act.</textarea>
         </div>
         <div class="form-actions">
-          <button class="form-submit" onclick="sendToReps('mailto')">Open in email app →</button>
-          <a class="btn-alt" href="#" onclick="return sendToReps('gmail')">Open in Gmail</a>
-          <button type="button" class="btn-alt" onclick="sendToReps('copy')">Copy message</button>
+          <button type="submit" class="form-submit">Open in email app →</button>
+          <button type="button" class="btn-alt" id="rep-gmail">Open in Gmail</button>
+          <button type="button" class="btn-alt" id="rep-copy">Copy message</button>
         </div>
-        <p class="form-note" id="rep-note">Your name signs it; nothing sends until you press send yourself. No email app set up? Use “Open in Gmail”, or “Copy message” and paste it anywhere.</p>
-      </div>
+        <p class="form-note" id="rep-note" aria-live="polite">Your name signs it; nothing sends until you press send yourself. No email app set up? Use “Open in Gmail”, or “Copy message” and paste it anywhere.</p>
+      </form>
       <script>
-      // Recipients. Researched from each body's official site 2026-06-30 — re-verify before relying on them.
-      var REP = { CSSF: "direction@cssf.lu", MOF: "Ministere-Finances@fi.etat.lu", ESMA: "info@esma.europa.eu" };
-      // EU national competent authorities (the CSSF-equivalent in each country).
-      // "" email = no public address (web-form only: FR, ES) or already covered by CSSF (LU) — send proceeds without it.
-      var NCA = {
-        AT:["FMA","fma@fma.gv.at"], BE:["FSMA","info.fin@fsma.be"], BG:["FSC","bg_fsc@fsc.bg"],
-        HR:["HANFA","capital.markets@hanfa.hr"], CY:["CySEC","info@cysec.gov.cy"],
-        CZ:["Czech National Bank","podatelna@cnb.cz"], DK:["Finanstilsynet","finanstilsynet@ftnet.dk"],
-        EE:["Finantsinspektsioon","info@fi.ee"], FI:["FIN-FSA","kirjaamo@finanssivalvonta.fi"],
-        FR:["AMF",""], DE:["BaFin","poststelle@bafin.de"], GR:["HCMC","info@cmc.gov.gr"],
-        HU:["MNB","ugyfelszolgalat@mnb.hu"], IE:["Central Bank of Ireland","prospectus@centralbank.ie"],
-        IT:["CONSOB","protocollo@consob.it"], LV:["Latvijas Banka","info@bank.lv"],
-        LT:["Lietuvos bankas","info@lb.lt"], LU:["CSSF","" ], MT:["MFSA","communications@mfsa.mt"],
-        NL:["AFM","info@afm.nl"], PL:["KNF","knf@knf.gov.pl"], PT:["CMVM","cmvm@cmvm.pt"],
-        RO:["ASF","office@asfromania.ro"], SK:["NBS","info@nbs.sk"], SI:["ATVP","info@atvp.si"],
-        ES:["CNMV",""], SE:["Finansinspektionen","finansinspektionen@fi.se"]
-      };
-      function updateReps() {
-        var code = document.getElementById('rep-country').value;
-        var row = document.getElementById('rep-nca');
-        var nca = NCA[code];
-        if (nca && nca[1]) {
-          row.querySelector('.recipient-name').textContent = nca[0];
-          row.style.display = 'block';
-        } else {
-          row.style.display = 'none';
-        }
-      }
-      // Rotate the subject so messages don't all arrive identical — identical subjects get bulk-filtered.
-      var SUBJECTS = [
-        "Withdraw approval of the Israel Bonds prospectus",
-        "Please suspend the Israel Bonds prospectus",
-        "Luxembourg must stop approving Israel Bonds",
-        "A constituent's concern about CSSF approval of Israel Bonds",
-        "Stop facilitating the sale of Israel Bonds in the EU"
-      ];
       (function () {
-        var s = document.getElementById('rep-subject');
-        if (s) s.value = SUBJECTS[Math.floor(Math.random() * SUBJECTS.length)];
-      })();
-
-      function setNote(text, ok) {
+        var form = document.getElementById('rep-form');
+        if (!form) return;
+        // Recipients. Researched from each body's official site 2026-06-30 — re-verify before relying on them.
+        var REP = { CSSF: "direction@cssf.lu", MOF: "Ministere-Finances@fi.etat.lu", ESMA: "info@esma.europa.eu" };
+        // EU national competent authorities (the CSSF-equivalent in each country).
+        // "" email = no public address (web-form only: FR, ES) or already covered by CSSF (LU) — send proceeds without it.
+        var NCA = {
+          AT:["FMA","fma@fma.gv.at"], BE:["FSMA","info.fin@fsma.be"], BG:["FSC","bg_fsc@fsc.bg"],
+          HR:["HANFA","capital.markets@hanfa.hr"], CY:["CySEC","info@cysec.gov.cy"],
+          CZ:["Czech National Bank","podatelna@cnb.cz"], DK:["Finanstilsynet","finanstilsynet@ftnet.dk"],
+          EE:["Finantsinspektsioon","info@fi.ee"], FI:["FIN-FSA","kirjaamo@finanssivalvonta.fi"],
+          FR:["AMF",""], DE:["BaFin","poststelle@bafin.de"], GR:["HCMC","info@cmc.gov.gr"],
+          HU:["MNB","ugyfelszolgalat@mnb.hu"], IE:["Central Bank of Ireland","prospectus@centralbank.ie"],
+          IT:["CONSOB","protocollo@consob.it"], LV:["Latvijas Banka","info@bank.lv"],
+          LT:["Lietuvos bankas","info@lb.lt"], LU:["CSSF",""], MT:["MFSA","communications@mfsa.mt"],
+          NL:["AFM","info@afm.nl"], PL:["KNF","knf@knf.gov.pl"], PT:["CMVM","cmvm@cmvm.pt"],
+          RO:["ASF","office@asfromania.ro"], SK:["NBS","info@nbs.sk"], SI:["ATVP","info@atvp.si"],
+          ES:["CNMV",""], SE:["Finansinspektionen","finansinspektionen@fi.se"]
+        };
+        // Rotate the subject so messages don't all arrive identical — identical subjects get bulk-filtered.
+        var SUBJECTS = [
+          "Withdraw approval of the Israel Bonds prospectus",
+          "Please suspend the Israel Bonds prospectus",
+          "Luxembourg must stop approving Israel Bonds",
+          "A constituent's concern about CSSF approval of Israel Bonds",
+          "Stop facilitating the sale of Israel Bonds in the EU"
+        ];
+        var select = document.getElementById('rep-country');
         var note = document.getElementById('rep-note');
-        note.textContent = text;
-        note.style.color = ok ? '#1D7A4A' : '#E8001D';
-      }
+        var subjectInput = document.getElementById('rep-subject');
+        var ncaRow = document.getElementById('rep-nca');
+        subjectInput.value = SUBJECTS[Math.floor(Math.random() * SUBJECTS.length)];
 
-      function buildMsg() {
-        var code = document.getElementById('rep-country').value;
-        if (!code) return null;
-        var name = document.getElementById('rep-name').value.trim();
-        var why = document.getElementById('rep-why').value.trim();
-        var subject = document.getElementById('rep-subject').value.trim();
-        var body = document.getElementById('rep-body').value.trim();
-        // Insert the personal line as a second paragraph, right after the greeting.
-        if (why) {
-          var idx = body.indexOf('\n\n');
-          body = (idx === -1) ? why + '\n\n' + body : body.slice(0, idx) + '\n\n' + why + body.slice(idx);
-        }
-        body += '\n\nYours sincerely,\n' + (name || 'A concerned member of the public');
-        var cc = [REP.MOF, REP.ESMA];
-        var nca = NCA[code];
-        if (nca && nca[1]) cc.push(nca[1]);
-        return { to: REP.CSSF, cc: cc, subject: subject, body: body };
-      }
+        function setNote(text, ok) { note.textContent = text; note.style.color = ok ? '#1D7A4A' : '#c4001a'; }
 
-      function fallbackCopy(text) {
-        var t = document.createElement('textarea');
-        t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
-        document.body.appendChild(t); t.focus(); t.select();
-        var ok = false;
-        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-        document.body.removeChild(t);
-        return ok;
-      }
-
-      function sendToReps(mode) {
-        var m = buildMsg();
-        if (!m) { setNote('Please select your country first.', false); return false; }
-        var ccJoined = m.cc.join(',');
-        if (mode === 'gmail') {
-          window.open('https://mail.google.com/mail/?view=cm&fs=1' +
-            '&to=' + encodeURIComponent(m.to) +
-            '&cc=' + encodeURIComponent(ccJoined) +
-            '&su=' + encodeURIComponent(m.subject) +
-            '&body=' + encodeURIComponent(m.body), '_blank');
-          setNote('Gmail should open in a new tab with the message ready. Press send there.', true);
-          return false;
-        }
-        if (mode === 'copy') {
-          var block = 'To: ' + m.to + '\nCc: ' + ccJoined + '\nSubject: ' + m.subject + '\n\n' + m.body;
-          var ok = function () { setNote('Copied. Paste it into an email to the addresses shown above.', true); };
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(block).then(ok, function () { fallbackCopy(block) ? ok() : setNote('Could not copy — select the message text and copy it manually.', false); });
+        function updateReps() {
+          var nca = NCA[select.value];
+          if (nca && nca[1]) {
+            ncaRow.querySelector('.recipient-name').textContent = nca[0];
+            ncaRow.style.display = 'block';
           } else {
-            fallbackCopy(block) ? ok() : setNote('Could not copy — select the message text and copy it manually.', false);
+            ncaRow.style.display = 'none';
           }
-          return false;
         }
-        // default: mailto
-        window.location.href = 'mailto:' + encodeURIComponent(m.to) +
-          '?cc=' + m.cc.map(encodeURIComponent).join(',') +
-          '&subject=' + encodeURIComponent(m.subject) +
-          '&body=' + encodeURIComponent(m.body);
-        setNote('Your email app should open with the message ready. Press send there to deliver it.', true);
-        return false;
-      }
+
+        function buildMsg() {
+          var code = select.value;
+          if (!code) return null;
+          var name = document.getElementById('rep-name').value.trim();
+          var why = document.getElementById('rep-why').value.trim();
+          var subject = subjectInput.value.trim();
+          var body = document.getElementById('rep-body').value.trim();
+          // Insert the personal line as a second paragraph, right after the greeting.
+          if (why) {
+            var idx = body.indexOf('\n\n');
+            body = (idx === -1) ? why + '\n\n' + body : body.slice(0, idx) + '\n\n' + why + body.slice(idx);
+          }
+          body += '\n\nYours sincerely,\n' + (name || 'A concerned member of the public');
+          var cc = [REP.MOF, REP.ESMA];
+          var nca = NCA[code];
+          if (nca && nca[1]) cc.push(nca[1]);
+          return { to: REP.CSSF, cc: cc, subject: subject, body: body };
+        }
+
+        function fallbackCopy(text) {
+          var t = document.createElement('textarea');
+          t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+          document.body.appendChild(t); t.focus(); t.select();
+          var ok = false;
+          try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+          document.body.removeChild(t);
+          return ok;
+        }
+
+        function send(mode) {
+          var m = buildMsg();
+          if (!m) { setNote('Please select your country first.', false); select.focus(); return; }
+          var ccJoined = m.cc.join(',');
+          if (mode === 'gmail') {
+            window.open('https://mail.google.com/mail/?view=cm&fs=1' +
+              '&to=' + encodeURIComponent(m.to) +
+              '&cc=' + encodeURIComponent(ccJoined) +
+              '&su=' + encodeURIComponent(m.subject) +
+              '&body=' + encodeURIComponent(m.body), '_blank', 'noopener');
+            setNote('Gmail should open in a new tab with the message ready. Press send there.', true);
+            return;
+          }
+          if (mode === 'copy') {
+            var block = 'To: ' + m.to + '\nCc: ' + ccJoined + '\nSubject: ' + m.subject + '\n\n' + m.body;
+            var done = function () { setNote('Copied. Paste it into an email to the addresses shown alongside.', true); };
+            var fail = function () { setNote('Could not copy — select the message text and copy it manually.', false); };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(block).then(done, function () { fallbackCopy(block) ? done() : fail(); });
+            } else {
+              fallbackCopy(block) ? done() : fail();
+            }
+            return;
+          }
+          window.location.href = 'mailto:' + encodeURIComponent(m.to) +
+            '?cc=' + m.cc.map(encodeURIComponent).join(',') +
+            '&subject=' + encodeURIComponent(m.subject) +
+            '&body=' + encodeURIComponent(m.body);
+          setNote('Your email app should open with the message ready. Press send there to deliver it.', true);
+        }
+
+        select.addEventListener('change', updateReps);
+        form.addEventListener('submit', function (e) { e.preventDefault(); send('mailto'); });
+        document.getElementById('rep-gmail').addEventListener('click', function () { send('gmail'); });
+        document.getElementById('rep-copy').addEventListener('click', function () { send('copy'); });
+      })();
       </script>
     </div>
   </div>
@@ -720,77 +919,75 @@ The law is clear. Please act.</textarea>
       <div class="contact-socials">
         <a href="mailto:stopisraelbonds@gmail.com" class="social-link">
           <div class="social-icon email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </div>
           <div>
             <div class="social-info-label">Email us</div>
             <div class="social-info-name">stopisraelbonds@gmail.com</div>
           </div>
         </a>
-        <a href="https://www.instagram.com/stopisraelbonds/" target="_blank" class="social-link">
+        <a href="https://www.instagram.com/stopisraelbonds/" target="_blank" rel="noopener" class="social-link">
           <div class="social-icon instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#c2185b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#ad1457" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </div>
           <div>
             <div class="social-info-label">Instagram</div>
             <div class="social-info-name">@StopIsraelBonds</div>
           </div>
         </a>
-        <a href="YOUR_FACEBOOK_URL_HERE" target="_blank" class="social-link">
-          <div class="social-icon facebook">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1565c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </div>
-          <div>
-            <div class="social-info-label">Facebook</div>
-            <div class="social-info-name">Stop Israel Bonds</div>
-          </div>
-        </a>
       </div>
     </div>
     <div>
-      <div class="contact-form-title">Write to us</div>
-      <div class="contact-form">
+      <h3 class="contact-form-title">Write to us</h3>
+      <form class="contact-form" id="contact-form" novalidate>
         <div class="form-group">
           <label class="form-label" for="cf-name">Your name</label>
-          <input class="form-input" type="text" id="cf-name" placeholder="Full name">
+          <input class="form-input" type="text" id="cf-name" name="name" placeholder="Full name" required autocomplete="name">
         </div>
         <div class="form-group">
           <label class="form-label" for="cf-email">Your email</label>
-          <input class="form-input" type="email" id="cf-email" placeholder="you@example.com">
+          <input class="form-input" type="email" id="cf-email" name="email" placeholder="you@example.com" required autocomplete="email">
         </div>
         <div class="form-group">
           <label class="form-label" for="cf-msg">Message</label>
-          <textarea class="form-textarea" id="cf-msg" placeholder="Your message, question or support offer…"></textarea>
+          <textarea class="form-textarea" id="cf-msg" name="message" placeholder="Your message, question or support offer…" required></textarea>
         </div>
-        <button class="form-submit" onclick="sendMail()">Send message →</button>
-        <p class="form-note" id="cf-note">We read every message and reply as soon as we can.</p>
-      </div>
+        <button type="submit" class="form-submit">Send message →</button>
+        <p class="form-note" id="cf-note" aria-live="polite">We read every message and reply as soon as we can.</p>
+      </form>
       <script>
-      function sendMail() {
-        var name = document.getElementById('cf-name').value.trim();
-        var email = document.getElementById('cf-email').value.trim();
-        var msg = document.getElementById('cf-msg').value.trim();
-        var note = document.getElementById('cf-note');
-        if (!name || !email || !msg) {
-          note.textContent = 'Please fill in all fields before sending.';
-          note.style.color = '#E8001D';
-          return;
-        }
-        var subject = encodeURIComponent('Message from ' + name + ' via StopIsraelBonds.com');
-        var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + msg);
-        window.location.href = 'mailto:stopisraelbonds@gmail.com?subject=' + subject + '&body=' + body;
-        note.textContent = 'Your email client should open now. Thank you for reaching out!';
-        note.style.color = '#1D7A4A';
-      }
+      (function () {
+        var form = document.getElementById('contact-form');
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name = document.getElementById('cf-name').value.trim();
+          var email = document.getElementById('cf-email').value.trim();
+          var msg = document.getElementById('cf-msg').value.trim();
+          var note = document.getElementById('cf-note');
+          if (!name || !email || !msg) {
+            note.textContent = 'Please fill in all fields before sending.';
+            note.style.color = '#c4001a';
+            return;
+          }
+          var subject = encodeURIComponent('Message from ' + name + ' via StopIsraelBonds.com');
+          var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + msg);
+          window.location.href = 'mailto:stopisraelbonds@gmail.com?subject=' + subject + '&body=' + body;
+          note.textContent = 'Your email client should open now. Thank you for reaching out!';
+          note.style.color = '#1D7A4A';
+        });
+      })();
       </script>
     </div>
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="footer-logo">
+    <div class="footer-logo" aria-hidden="true">
       <div class="b1"><span>Stop</span></div>
       <div class="b2"><span>Israel</span></div>
       <div class="b3"><span>Bonds</span></div>
@@ -799,14 +996,11 @@ The law is clear. Please act.</textarea>
   </div>
   <div class="footer-hash">#StopIsraelBonds</div>
   <div style="display:flex;gap:0.75rem;align-items:center;">
-    <a href="mailto:stopisraelbonds@gmail.com" title="Email" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    <a href="mailto:stopisraelbonds@gmail.com" aria-label="Email Stop Israel Bonds" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.12);transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
     </a>
-    <a href="https://www.instagram.com/stopisraelbonds/" target="_blank" title="Instagram" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-    </a>
-    <a href="YOUR_FACEBOOK_URL_HERE" target="_blank" title="Facebook" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    <a href="https://www.instagram.com/stopisraelbonds/" target="_blank" rel="noopener" aria-label="Stop Israel Bonds on Instagram" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.12);transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
     </a>
   </div>
 </footer>
