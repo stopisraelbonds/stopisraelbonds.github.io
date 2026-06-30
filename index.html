@@ -201,6 +201,10 @@ section { padding: 6rem 2.5rem; }
 .recipient-name { font-family: var(--display); font-weight: 900; font-size: 17px; color: var(--black); text-transform: uppercase; }
 .form-select { padding: 14px 16px; border: 2px solid #e8e8e8; border-radius: 8px; font-family: var(--body); font-size: 16px; color: var(--black); background: var(--white); outline: none; transition: border-color 0.2s; }
 .form-select:focus { border-color: var(--green); }
+.form-hint { font-size: 13px; color: #888; line-height: 1.5; margin-top: -2px; }
+.form-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+.btn-alt { background: var(--white); color: var(--green); border: 2px solid var(--green); font-family: var(--body); font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; border-radius: 20px; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+.btn-alt:hover { background: #f0faf4; }
 
 /* FOOTER */
 footer { background: var(--black); padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
@@ -556,7 +560,12 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
           <input class="form-input" type="text" id="rep-name" placeholder="Full name">
         </div>
         <div class="form-group">
-          <label class="form-label" for="rep-subject">Subject</label>
+          <label class="form-label" for="rep-why">Why this matters to you (one or two lines)</label>
+          <textarea class="form-textarea" id="rep-why" style="min-height:80px;" placeholder="e.g. As a resident of Luxembourg I do not want my country's financial sector funding this…"></textarea>
+          <p class="form-hint">Optional but powerful: a sentence in your own words makes this a personal letter that gets logged and counted individually, instead of being filtered as a mass campaign.</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rep-subject">Subject (edit it — varied subjects land better)</label>
           <input class="form-input" type="text" id="rep-subject" value="Withdraw approval of the Israel Bonds prospectus">
         </div>
         <div class="form-group">
@@ -576,8 +585,12 @@ I therefore call on you to:
 
 The law is clear. Please act.</textarea>
         </div>
-        <button class="form-submit" onclick="sendToReps()">Open email &amp; send →</button>
-        <p class="form-note" id="rep-note">Your name is added below the signature. Nothing is sent until you press send in your own email app.</p>
+        <div class="form-actions">
+          <button class="form-submit" onclick="sendToReps('mailto')">Open in email app →</button>
+          <a class="btn-alt" href="#" onclick="return sendToReps('gmail')">Open in Gmail</a>
+          <button type="button" class="btn-alt" onclick="sendToReps('copy')">Copy message</button>
+        </div>
+        <p class="form-note" id="rep-note">Your name signs it; nothing sends until you press send yourself. No email app set up? Use “Open in Gmail”, or “Copy message” and paste it anywhere.</p>
       </div>
       <script>
       // Recipients. Researched from each body's official site 2026-06-30 — re-verify before relying on them.
@@ -608,24 +621,84 @@ The law is clear. Please act.</textarea>
           row.style.display = 'none';
         }
       }
-      function sendToReps() {
+      // Rotate the subject so messages don't all arrive identical — identical subjects get bulk-filtered.
+      var SUBJECTS = [
+        "Withdraw approval of the Israel Bonds prospectus",
+        "Please suspend the Israel Bonds prospectus",
+        "Luxembourg must stop approving Israel Bonds",
+        "A constituent's concern about CSSF approval of Israel Bonds",
+        "Stop facilitating the sale of Israel Bonds in the EU"
+      ];
+      (function () {
+        var s = document.getElementById('rep-subject');
+        if (s) s.value = SUBJECTS[Math.floor(Math.random() * SUBJECTS.length)];
+      })();
+
+      function setNote(text, ok) {
         var note = document.getElementById('rep-note');
+        note.textContent = text;
+        note.style.color = ok ? '#1D7A4A' : '#E8001D';
+      }
+
+      function buildMsg() {
         var code = document.getElementById('rep-country').value;
-        if (!code) { note.textContent = 'Please select your country first.'; note.style.color = '#E8001D'; return; }
+        if (!code) return null;
         var name = document.getElementById('rep-name').value.trim();
+        var why = document.getElementById('rep-why').value.trim();
         var subject = document.getElementById('rep-subject').value.trim();
         var body = document.getElementById('rep-body').value.trim();
+        // Insert the personal line as a second paragraph, right after the greeting.
+        if (why) {
+          var idx = body.indexOf('\n\n');
+          body = (idx === -1) ? why + '\n\n' + body : body.slice(0, idx) + '\n\n' + why + body.slice(idx);
+        }
+        body += '\n\nYours sincerely,\n' + (name || 'A concerned member of the public');
         var cc = [REP.MOF, REP.ESMA];
         var nca = NCA[code];
         if (nca && nca[1]) cc.push(nca[1]);
-        var sig = '\n\nYours sincerely,\n' + (name || 'A concerned member of the public');
-        var href = 'mailto:' + encodeURIComponent(REP.CSSF) +
-          '?cc=' + cc.map(encodeURIComponent).join(',') +
-          '&subject=' + encodeURIComponent(subject) +
-          '&body=' + encodeURIComponent(body + sig);
-        window.location.href = href;
-        note.textContent = 'Your email client should open with the message ready. Press send there to deliver it.';
-        note.style.color = '#1D7A4A';
+        return { to: REP.CSSF, cc: cc, subject: subject, body: body };
+      }
+
+      function fallbackCopy(text) {
+        var t = document.createElement('textarea');
+        t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+        document.body.appendChild(t); t.focus(); t.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(t);
+        return ok;
+      }
+
+      function sendToReps(mode) {
+        var m = buildMsg();
+        if (!m) { setNote('Please select your country first.', false); return false; }
+        var ccJoined = m.cc.join(',');
+        if (mode === 'gmail') {
+          window.open('https://mail.google.com/mail/?view=cm&fs=1' +
+            '&to=' + encodeURIComponent(m.to) +
+            '&cc=' + encodeURIComponent(ccJoined) +
+            '&su=' + encodeURIComponent(m.subject) +
+            '&body=' + encodeURIComponent(m.body), '_blank');
+          setNote('Gmail should open in a new tab with the message ready. Press send there.', true);
+          return false;
+        }
+        if (mode === 'copy') {
+          var block = 'To: ' + m.to + '\nCc: ' + ccJoined + '\nSubject: ' + m.subject + '\n\n' + m.body;
+          var ok = function () { setNote('Copied. Paste it into an email to the addresses shown above.', true); };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(block).then(ok, function () { fallbackCopy(block) ? ok() : setNote('Could not copy — select the message text and copy it manually.', false); });
+          } else {
+            fallbackCopy(block) ? ok() : setNote('Could not copy — select the message text and copy it manually.', false);
+          }
+          return false;
+        }
+        // default: mailto
+        window.location.href = 'mailto:' + encodeURIComponent(m.to) +
+          '?cc=' + m.cc.map(encodeURIComponent).join(',') +
+          '&subject=' + encodeURIComponent(m.subject) +
+          '&body=' + encodeURIComponent(m.body);
+        setNote('Your email app should open with the message ready. Press send there to deliver it.', true);
+        return false;
       }
       </script>
     </div>
