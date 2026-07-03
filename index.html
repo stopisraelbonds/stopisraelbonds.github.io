@@ -698,7 +698,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
   <div class="represent-layout">
     <div>
       <p class="represent-intro">Tell the regulators who can stop this what is happening in Luxembourg. Your message opens in your own email client, addressed and ready &mdash; <strong>you</strong> press send, so it arrives as a real letter from a real person.</p>
-      <p class="represent-intro">Every message goes to the <strong>CSSF</strong>, the <strong>Luxembourg Ministry of Finance</strong> and <strong>ESMA</strong>. Pick your country and we add your national financial regulator &mdash; the body that can refuse to passport these bonds.</p>
+      <p class="represent-intro">Every message goes to the <strong>CSSF</strong>, the <strong>Luxembourg Ministry of Finance</strong>, <strong>ESMA</strong> and Ireland's <strong>Central Bank</strong> &mdash; the prospectus's home authority. Pick your country and we add your national financial regulator &mdash; the body that can refuse to passport these bonds.</p>
       <div class="represent-recipients">
         <div class="recipient">
           <div class="recipient-label">To &middot; Luxembourg regulator</div>
@@ -711,6 +711,10 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
         <div class="recipient">
           <div class="recipient-label">Cc &middot; EU securities regulator</div>
           <div class="recipient-name">ESMA</div>
+        </div>
+        <div class="recipient">
+          <div class="recipient-label">Cc &middot; Home member state</div>
+          <div class="recipient-name">Central Bank of Ireland</div>
         </div>
         <div class="recipient" id="rep-nca" style="display:none;">
           <div class="recipient-label">Cc &middot; Your national regulator</div>
@@ -755,6 +759,10 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
             <option value="OTHER">Other / outside the EU</option>
           </select>
         </div>
+        <div id="rep-formonly" style="display:none;padding:14px 16px;border:2px solid var(--green);border-radius:8px;background:#f0f7f2;">
+          <p class="form-hint" id="rep-formonly-text" style="margin:0 0 10px;"></p>
+          <a id="rep-formonly-link" href="#" target="_blank" rel="noopener" class="btn-alt" style="display:inline-block;">Open their contact form ↗</a>
+        </div>
         <div class="form-group">
           <label class="form-label" for="rep-name">Your name (added to the signature)</label>
           <input class="form-input" type="text" id="rep-name" name="name" placeholder="Full name" autocomplete="name">
@@ -785,6 +793,10 @@ I therefore call on you to:
 
 The law is clear. Please act.</textarea>
         </div>
+        <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:10px;">
+          <input type="checkbox" id="rep-petition" checked style="margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--green);">
+          <label class="form-hint" for="rep-petition" style="margin:0;cursor:pointer;">Add my name to the public petition (a blind copy goes to the campaign so we can count support — the regulators never see it). It’s marked with “+petition” so we only count those who opted in.</label>
+        </div>
         <div class="form-actions">
           <button type="submit" class="form-submit">Open in email app →</button>
           <button type="button" class="btn-alt" id="rep-gmail">Open in Gmail</button>
@@ -796,13 +808,18 @@ The law is clear. Please act.</textarea>
       (function () {
         var form = document.getElementById('rep-form');
         if (!form) return;
-        // Recipients. Researched from each body's official site 2026-06-30 — re-verify before relying on them.
-        var REP = { CSSF: "direction@cssf.lu", MOF: "Ministere-Finances@fi.etat.lu", ESMA: "info@esma.europa.eu" };
+        // Recipients. Researched from each body's official site 2026-07-02 — re-verify before relying on them.
+        // Ireland is CC'd on every message: it remains the home member state for the prospectus (it transferred
+        // approval to the CSSF), so the "coordinate with Ireland and notify ESMA" demand names it directly.
+        var REP = { CSSF: "direction@cssf.lu", MOF: "ministere-finances@fi.etat.lu", ESMA: "info@esma.europa.eu", IE: "prospectus@centralbank.ie" };
+        // Blind copy to the campaign on every send (monitoring). Gmail plus-addressing tags petition opt-ins
+        // into the same inbox: filter to:stopisraelbonds+petition@gmail.com to count signers.
+        var BCC = "stopisraelbonds@gmail.com", BCC_PETITION = "stopisraelbonds+petition@gmail.com";
         // EU national competent authorities (the CSSF-equivalent in each country).
         // "" email = no public address (web-form only: FR, ES) or already covered by CSSF (LU) — send proceeds without it.
         var NCA = {
           AT:["FMA","fma@fma.gv.at"], BE:["FSMA","info.fin@fsma.be"], BG:["FSC","bg_fsc@fsc.bg"],
-          HR:["HANFA","capital.markets@hanfa.hr"], CY:["CySEC","info@cysec.gov.cy"],
+          HR:["HANFA","info@hanfa.hr"], CY:["CySEC","info@cysec.gov.cy"],
           CZ:["Czech National Bank","podatelna@cnb.cz"], DK:["Finanstilsynet","finanstilsynet@ftnet.dk"],
           EE:["Finantsinspektsioon","info@fi.ee"], FI:["FIN-FSA","kirjaamo@finanssivalvonta.fi"],
           FR:["AMF",""], DE:["BaFin","poststelle@bafin.de"], GR:["HCMC","info@cmc.gov.gr"],
@@ -812,6 +829,13 @@ The law is clear. Please act.</textarea>
           NL:["AFM","info@afm.nl"], PL:["KNF","knf@knf.gov.pl"], PT:["CMVM","cmvm@cmvm.pt"],
           RO:["ASF","office@asfromania.ro"], SK:["NBS","info@nbs.sk"], SI:["ATVP","info@atvp.si"],
           ES:["CNMV",""], SE:["Finansinspektionen","finansinspektionen@fi.se"]
+        };
+        // Regulators that take public messages via a web form. FR/ES have no public email (form is the only path);
+        // BE has an email (kept in CC) but routes the public to a form too. [url, "only"|"also"].
+        var FORM = {
+          FR: ["https://www.amf-france.org/en/contact-us", "only"],
+          ES: ["https://www.cnmv.es/portal/inversor/consultas", "only"],
+          BE: ["https://www.fsma.be/en/consumer-contact-form", "also"]
         };
         // Rotate the subject so messages don't all arrive identical — identical subjects get bulk-filtered.
         var SUBJECTS = [
@@ -825,17 +849,30 @@ The law is clear. Please act.</textarea>
         var note = document.getElementById('rep-note');
         var subjectInput = document.getElementById('rep-subject');
         var ncaRow = document.getElementById('rep-nca');
+        var formBox = document.getElementById('rep-formonly');
         subjectInput.value = SUBJECTS[Math.floor(Math.random() * SUBJECTS.length)];
 
         function setNote(text, ok) { note.textContent = text; note.style.color = ok ? '#1D7A4A' : '#c4001a'; }
 
         function updateReps() {
-          var nca = NCA[select.value];
-          if (nca && nca[1]) {
+          var code = select.value;
+          var nca = NCA[code];
+          if (nca && nca[1] && code !== 'IE') { // IE is already shown as an always-CC card
             ncaRow.querySelector('.recipient-name').textContent = nca[0];
             ncaRow.style.display = 'block';
           } else {
             ncaRow.style.display = 'none';
+          }
+          var f = FORM[code];
+          if (f) {
+            var name = nca ? nca[0] : 'your regulator';
+            document.getElementById('rep-formonly-text').textContent = f[1] === 'only'
+              ? name + ' doesn’t accept email from the public. To be heard in your country too, copy your message (button below) and submit it via their official contact form.'
+              : name + ' is CC’d, but it also routes the public to a contact form — submitting there as well helps get your message logged as a consumer contact.';
+            document.getElementById('rep-formonly-link').href = f[0];
+            formBox.style.display = 'block';
+          } else {
+            formBox.style.display = 'none';
           }
         }
 
@@ -852,10 +889,12 @@ The law is clear. Please act.</textarea>
             body = (idx === -1) ? why + '\n\n' + body : body.slice(0, idx) + '\n\n' + why + body.slice(idx);
           }
           body += '\n\nYours sincerely,\n' + (name || 'A concerned member of the public');
-          var cc = [REP.MOF, REP.ESMA];
+          var cc = [REP.MOF, REP.ESMA, REP.IE];
           var nca = NCA[code];
           if (nca && nca[1]) cc.push(nca[1]);
-          return { to: REP.CSSF, cc: cc, subject: subject, body: body };
+          cc = cc.filter(function (a, i) { return cc.indexOf(a) === i; }); // dedup (Irish senders would double Ireland)
+          var bcc = document.getElementById('rep-petition').checked ? BCC_PETITION : BCC;
+          return { to: REP.CSSF, cc: cc, bcc: bcc, subject: subject, body: body };
         }
 
         function fallbackCopy(text) {
@@ -876,13 +915,14 @@ The law is clear. Please act.</textarea>
             window.open('https://mail.google.com/mail/?view=cm&fs=1' +
               '&to=' + encodeURIComponent(m.to) +
               '&cc=' + encodeURIComponent(ccJoined) +
+              '&bcc=' + encodeURIComponent(m.bcc) +
               '&su=' + encodeURIComponent(m.subject) +
               '&body=' + encodeURIComponent(m.body), '_blank', 'noopener');
             setNote('Gmail should open in a new tab with the message ready. Press send there.', true);
             return;
           }
           if (mode === 'copy') {
-            var block = 'To: ' + m.to + '\nCc: ' + ccJoined + '\nSubject: ' + m.subject + '\n\n' + m.body;
+            var block = 'To: ' + m.to + '\nCc: ' + ccJoined + '\nBcc: ' + m.bcc + '\nSubject: ' + m.subject + '\n\n' + m.body;
             var done = function () { setNote('Copied. Paste it into an email to the addresses shown alongside.', true); };
             var fail = function () { setNote('Could not copy — select the message text and copy it manually.', false); };
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -894,6 +934,7 @@ The law is clear. Please act.</textarea>
           }
           window.location.href = 'mailto:' + encodeURIComponent(m.to) +
             '?cc=' + m.cc.map(encodeURIComponent).join(',') +
+            '&bcc=' + encodeURIComponent(m.bcc) +
             '&subject=' + encodeURIComponent(m.subject) +
             '&body=' + encodeURIComponent(m.body);
           setNote('Your email app should open with the message ready. Press send there to deliver it.', true);
