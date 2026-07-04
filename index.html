@@ -804,7 +804,7 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
         </div>
         <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:10px;">
           <input type="checkbox" id="rep-petition" style="margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--green);">
-          <label class="form-hint" for="rep-petition" style="margin:0;cursor:pointer;">Add my name to the public petition. Only if you tick this, a blind copy of your email (marked “+petition”) goes to the campaign so we can count support and publish your name — never your email address or message — as a signatory. The regulators never see the copy. See our <a href="privacy.html">privacy notice</a>.</label>
+          <label class="form-hint" for="rep-petition" style="margin:0;cursor:pointer;">Add my name to the public petition. Every email is blind-copied to the campaign so we can follow how the action is going — the regulators never see this, and you can remove the Bcc in your draft if you prefer. Ticking this box marks your copy “+petition”, counting you as a signatory; we may publish your name, never your email address or message. See our <a href="privacy.html">privacy notice</a>.</label>
         </div>
         <div class="form-actions">
           <button type="submit" class="form-submit">Open in email app →</button>
@@ -821,9 +821,10 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
         // Ireland is CC'd on every message: it remains the home member state for the prospectus (it transferred
         // approval to the CSSF), so the "coordinate with Ireland and notify ESMA" demand names it directly.
         var REP = { CSSF: "direction@cssf.lu", MOF: "ministere-finances@fi.etat.lu", ESMA: "info@esma.europa.eu", IE: "prospectus@centralbank.ie" };
-        // Blind copy to the campaign ONLY on petition opt-in (GDPR: explicit consent — political-opinion data).
-        // Filter to:stopisraelbonds+petition@gmail.com to count signers.
-        var BCC_PETITION = "stopisraelbonds+petition@gmail.com";
+        // Every send is blind-copied to the campaign (disclosed in the label + privacy notice; the user can
+        // delete the Bcc in their draft). Petition opt-ins get the +petition marker so signers are filterable:
+        // filter to:stopisraelbonds+petition@gmail.com to count them.
+        var BCC = "stopisraelbonds@gmail.com", BCC_PETITION = "stopisraelbonds+petition@gmail.com";
         // EU national competent authorities (the CSSF-equivalent in each country).
         // "" email = no public address (web-form only: FR, ES) or already covered by CSSF (LU) — send proceeds without it.
         var NCA = {
@@ -894,7 +895,7 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
           var nca = NCA[code];
           if (nca && nca[1]) cc.push(nca[1]);
           cc = cc.filter(function (a, i) { return cc.indexOf(a) === i; }); // dedup (Irish senders would double Ireland)
-          var bcc = document.getElementById('rep-petition').checked ? BCC_PETITION : "";
+          var bcc = document.getElementById('rep-petition').checked ? BCC_PETITION : BCC;
           return { to: REP.CSSF, cc: cc, bcc: bcc, subject: subject, body: body };
         }
 
