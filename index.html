@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-07R0623265"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-07R0623265');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stop Israel Bonds</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#E8001D">
+<!-- Fonts self-hosted (GDPR: no visitor IPs to Google) -->
+<!-- 100% privacy-first analytics -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <style>
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 900; font-display: swap; src: url(fonts/BarlowCondensed-900.woff2) format('woff2'); }
+@font-face { font-family: 'Nunito Sans'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(fonts/NunitoSans-var.woff2) format('woff2-variations'); }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --black:  #111111;
@@ -33,7 +30,7 @@ body { background: var(--white); color: var(--black); font-family: var(--body); 
 
 /* FOCUS RINGS */
 a:focus-visible, button:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 4px; }
-.form-input:focus-visible, .form-textarea:focus-visible { outline: 3px solid var(--green); outline-offset: 1px; }
+.form-input:focus-visible, .form-textarea:focus-visible, .form-select:focus-visible { outline: 3px solid var(--green); outline-offset: 1px; }
 .facts a:focus-visible, .action a:focus-visible, .action button:focus-visible { outline-color: var(--white); }
 .law a:focus-visible, .data a:focus-visible { outline-color: var(--white); }
 
@@ -214,6 +211,25 @@ section { padding: 6rem 2.5rem; }
 .form-submit:hover { background: #155736; }
 .form-note { font-size: 13px; color: #5e5e5e; line-height: 1.6; }
 
+/* REPRESENT - BIANCO */
+.represent { background: var(--white); border-top: 2px solid #e8e8e8; }
+.represent .section-label { color: var(--red); }
+.represent .section-title { color: var(--black); }
+.represent-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 1rem; }
+.represent-intro { font-size: 17px; color: #4a4a4a; line-height: 1.8; margin-bottom: 1.5rem; }
+.represent-intro strong { color: var(--black); font-weight: 700; }
+.represent-recipients { border: 2px solid #949494; border-radius: 10px; overflow: hidden; }
+.recipient { padding: 1rem 1.5rem; border-bottom: 2px solid #e0e0e0; }
+.recipient:last-child { border-bottom: none; }
+.recipient-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #5e5e5e; font-weight: 700; margin-bottom: 2px; }
+.recipient-name { font-family: var(--display); font-weight: 900; font-size: 17px; color: var(--black); text-transform: uppercase; }
+.form-select { padding: 14px 16px; border: 2px solid #949494; border-radius: 8px; font-family: var(--body); font-size: 16px; color: var(--black); background: var(--white); transition: border-color 0.2s; }
+.form-select:focus { border-color: var(--green); }
+.form-hint { font-size: 13px; color: #5e5e5e; line-height: 1.5; margin-top: -2px; }
+.form-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+.btn-alt { background: var(--white); color: var(--green); border: 2px solid var(--green); font-family: var(--body); font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; border-radius: 20px; cursor: pointer; transition: background 0.2s; }
+.btn-alt:hover { background: #f0faf4; }
+
 /* FOOTER */
 footer { background: var(--black); padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
 .footer-logo { display: flex; flex-direction: column; gap: 3px; }
@@ -331,7 +347,15 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
   .social-icon { width: 40px; height: 40px; }
   .social-info-name { font-size: 16px; }
   .contact-form-title { font-size: 24px; }
-  .form-input, .form-textarea { font-size: 16px; padding: 12px 14px; }
+  .form-input, .form-textarea, .form-select { font-size: 16px; padding: 12px 14px; }
+
+  /* REPRESENT */
+  .represent-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .represent-intro { font-size: 15px; }
+  .recipient { padding: 0.85rem 1.25rem; }
+  .recipient-name { font-size: 16px; }
+  .form-actions { gap: 0.5rem; }
+  .btn-alt { padding: 12px 22px; font-size: 12px; }
 
   /* FOOTER */
   footer { padding: 2rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
@@ -366,6 +390,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
     <li><a href="#bonds">The Bonds</a></li>
     <li><a href="#do">Luxembourg's Options</a></li>
     <li><a href="#resources">Resources</a></li>
+    <li><a href="#represent">Email Reps</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#action" class="nav-cta">Act Now</a></li>
   </ul>
@@ -644,6 +669,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
   <p class="action-desc">Share this campaign. Pressure your representatives. Demand Luxembourg's financial sector aligns with what international law demands.</p>
   <div class="btns">
     <button type="button" class="btn-w" id="share-btn">Share the campaign</button>
+    <a href="#represent" class="btn-o">Email the regulators</a>
     <a href="mailto:?subject=Stop%20Israel%20Bonds%20%E2%80%94%20a%20message%20to%20my%20representative&body=Dear%20%5BMP%20name%5D%2C%0A%0AI%20am%20writing%20about%20Luxembourg%27s%20approval%20of%20Israel%20Bonds%20by%20the%20CSSF.%20%0A%0AMore%20at%20https%3A%2F%2Fstopisraelbonds.com" class="btn-o">Write to your MP</a>
   </div>
   <script>
@@ -666,6 +692,265 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
     });
   })();
   </script>
+</section>
+
+<!-- CONTACT REPRESENTATIVES - BIANCO -->
+<section class="represent" id="represent">
+  <div class="section-label">Take action</div>
+  <h2 class="section-title">Contact your<br>representatives</h2>
+  <div class="represent-layout">
+    <div>
+      <p class="represent-intro">Tell the regulators who can stop this what is happening in Luxembourg. Your message opens in your own email client, addressed and ready &mdash; <strong>you</strong> press send, so it arrives as a real letter from a real person.</p>
+      <p class="represent-intro">Every message goes to the <strong>CSSF</strong>, the <strong>Luxembourg Ministry of Finance</strong>, <strong>ESMA</strong> and Ireland's <strong>Central Bank</strong> &mdash; the prospectus's home authority. Pick your country and we add your national financial regulator &mdash; the body that can refuse to passport these bonds.</p>
+      <div class="represent-recipients">
+        <div class="recipient">
+          <div class="recipient-label">To &middot; Luxembourg regulator</div>
+          <div class="recipient-name">CSSF</div>
+        </div>
+        <div class="recipient">
+          <div class="recipient-label">Cc &middot; Luxembourg government</div>
+          <div class="recipient-name">Ministry of Finance</div>
+        </div>
+        <div class="recipient">
+          <div class="recipient-label">Cc &middot; EU securities regulator</div>
+          <div class="recipient-name">ESMA</div>
+        </div>
+        <div class="recipient">
+          <div class="recipient-label">Cc &middot; Home member state</div>
+          <div class="recipient-name">Central Bank of Ireland</div>
+        </div>
+        <div class="recipient" id="rep-nca" style="display:none;">
+          <div class="recipient-label">Cc &middot; Your national regulator</div>
+          <div class="recipient-name"></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 class="contact-form-title">Send your message</h3>
+      <form class="contact-form" id="rep-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="rep-country">Your country</label>
+          <select class="form-select" id="rep-country" name="country" required>
+            <option value="">Select your country…</option>
+            <option value="AT">Austria</option>
+            <option value="BE">Belgium</option>
+            <option value="BG">Bulgaria</option>
+            <option value="HR">Croatia</option>
+            <option value="CY">Cyprus</option>
+            <option value="CZ">Czechia</option>
+            <option value="DK">Denmark</option>
+            <option value="EE">Estonia</option>
+            <option value="FI">Finland</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+            <option value="GR">Greece</option>
+            <option value="HU">Hungary</option>
+            <option value="IE">Ireland</option>
+            <option value="IT">Italy</option>
+            <option value="LV">Latvia</option>
+            <option value="LT">Lithuania</option>
+            <option value="LU">Luxembourg</option>
+            <option value="MT">Malta</option>
+            <option value="NL">Netherlands</option>
+            <option value="PL">Poland</option>
+            <option value="PT">Portugal</option>
+            <option value="RO">Romania</option>
+            <option value="SK">Slovakia</option>
+            <option value="SI">Slovenia</option>
+            <option value="ES">Spain</option>
+            <option value="SE">Sweden</option>
+            <option value="OTHER">Other / outside the EU</option>
+          </select>
+        </div>
+        <div id="rep-formonly" style="display:none;padding:14px 16px;border:2px solid var(--green);border-radius:8px;background:#f0f7f2;">
+          <p class="form-hint" id="rep-formonly-text" style="margin:0 0 10px;"></p>
+          <a id="rep-formonly-link" href="#" target="_blank" rel="noopener" class="btn-alt" style="display:inline-block;">Open their contact form ↗</a>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rep-name">Your name (added to the signature)</label>
+          <input class="form-input" type="text" id="rep-name" name="name" placeholder="Full name" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rep-why">Why this matters to you (one or two lines)</label>
+          <textarea class="form-textarea" id="rep-why" style="min-height:80px;" placeholder="e.g. As a resident of Luxembourg I do not want my country's financial sector funding this…"></textarea>
+          <p class="form-hint">Optional but powerful: a sentence in your own words makes this a personal letter that gets logged and counted individually, instead of being filtered as a mass campaign.</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rep-subject">Subject (edit it — varied subjects land better)</label>
+          <input class="form-input" type="text" id="rep-subject" name="subject" value="The role of the Commission de Surveillance du Secteur Financier in enabling the sale of Israel bonds within the European Union">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rep-body">Your message (edit freely)</label>
+          <textarea class="form-textarea" id="rep-body" style="min-height:260px;">Dear Director General,
+
+As citizens/residents of EU countries, we are writing to express our deep concern about the role of the Commission de Surveillance du Secteur Financier (CSSF) in enabling Israel bonds to be sold in the EU.
+
+The CSSF's approval of the Israel bonds prospectus documentation, which lacks crucial information, raises important legal and moral issues.
+
+The 'Use of Proceeds' in section 8 of the prospectus should clarify that 'general financing purposes of the Issuer' includes, at least in part since there is no ring-fencing away from military expenditure, the financing of its war in Gaza, as confirmed by the CEO of Israel Bonds, who is also a member of Israel Bonds' international board of directors. It includes as well helping to support Israeli settlements in illegally occupied Palestinian territory, as documented by The Times of Israel. The legal opinion produced by Law for Palestine makes clear that approving the bond prospectus constitutes prohibited "aid or assistance" because the bonds' fungible proceeds enhance Israel's overall budget, directly supporting its unlawful activities.
+
+Although the prospectus documentation makes reference to the International Court of Justice (ICJ) provisional measures of January 26, March 28 and May 24 2024, there is no clear statement that the ICJ found it plausible that there is a real and imminent risk that irreparable prejudice will be caused to the rights of Palestinians under the Genocide Convention, which obliges all contracting parties, including Luxembourg, to prevent genocide.
+
+On this regard, the prospectus simply states that "Israel maintains that it continues to act in full compliance with applicable law", without offering any concrete example of how these provisional measures are actually implemented and what the consequences of lack of compliance might be.
+
+There is no mention of the ICJ advisory opinion of 19 July 2024, which ruled that Israel's presence in the Occupied Palestinian Territory (OPT — defined as the West Bank, East Jerusalem and the Gaza Strip) is illegal, or UN General Assembly Resolution A/RES/ES-10/24, based on this ICJ advisory opinion, which was voted for by Luxembourg and overwhelmingly adopted on 18 September 2024. From the advisory opinion and adopted resolution, it is clear that states are legally obligated not to render aid or assistance in maintaining the situation created by Israel's illegal presence in the OPT, and must take steps to ensure this obligation applies to their nationals, companies and entities under their jurisdiction, as well as their authorities.
+
+The Risk Factors section (section 2 in the prospectus) should include the real risks of negative economic outcomes for Israel — possible sanctions, trade embargoes, liability for reparations, etc. — resulting from the ICJ rulings and UN resolution mentioned above, and the pending decision of the ICJ in the genocide case against Israel brought by South Africa.
+
+Without this information, investors may not realise that by buying Israeli bonds they are at risk of aiding Israel financially to maintain and expand its occupation of Palestinian territory that the ICJ has ruled is illegal, and to undertake a "war campaign" which the ICJ considers is plausibly genocidal and in which the International Criminal Court deems Israel to have committed crimes against humanity and war crimes.
+
+By failing in its duty to ensure the completeness of the prospectus documentation, to assess material risks, including environmental, social and governance risks, and to act in accordance with fundamental human rights protected by European and international treaties, the CSSF may be failing in its duty under the EU Prospectus Regulation to protect European securities market participants from potential future liabilities as enablers of Israeli violations of international law.
+
+We therefore respectfully demand that you ensure that all measures at the CSSF's disposal are taken, as a matter of urgency, to end this situation and end the CSSF's role in enabling the sale of Israel bonds within the EU.</textarea>
+        </div>
+        <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:10px;">
+          <input type="checkbox" id="rep-petition" style="margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--green);">
+          <label class="form-hint" for="rep-petition" style="margin:0;cursor:pointer;">Add my name to the public petition. Every email is blind-copied to the campaign so we can follow how the action is going — the regulators never see this, and you can remove the Bcc in your draft if you prefer. Ticking this box marks your copy “+petition”, counting you as a signatory; we may publish your name, never your email address or message. See our <a href="privacy.html">privacy notice</a>.</label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="form-submit">Open in email app →</button>
+          <button type="button" class="btn-alt" id="rep-gmail">Open in Gmail</button>
+          <button type="button" class="btn-alt" id="rep-copy">Copy message</button>
+        </div>
+        <p class="form-note" id="rep-note" aria-live="polite">Your name signs it; nothing sends until you press send yourself. No email app set up? Use “Open in Gmail”, or “Copy message” and paste it anywhere.</p>
+      </form>
+      <script>
+      (function () {
+        var form = document.getElementById('rep-form');
+        if (!form) return;
+        // Recipients. Researched from each body's official site 2026-07-02 — re-verify before relying on them.
+        // Ireland is CC'd on every message: it remains the home member state for the prospectus (it transferred
+        // approval to the CSSF), so the "coordinate with Ireland and notify ESMA" demand names it directly.
+        var REP = { CSSF: "direction@cssf.lu", MOF: "ministere-finances@fi.etat.lu", ESMA: "info@esma.europa.eu", IE: "prospectus@centralbank.ie" };
+        // Every send is blind-copied to the campaign (disclosed in the label + privacy notice; the user can
+        // delete the Bcc in their draft). Petition opt-ins get the +petition marker so signers are filterable:
+        // filter to:stopisraelbonds+petition@gmail.com to count them.
+        var BCC = "stopisraelbonds@gmail.com", BCC_PETITION = "stopisraelbonds+petition@gmail.com";
+        // EU national competent authorities (the CSSF-equivalent in each country).
+        // "" email = no public address (web-form only: FR, ES) or already covered by CSSF (LU) — send proceeds without it.
+        var NCA = {
+          AT:["FMA","fma@fma.gv.at"], BE:["FSMA","info.fin@fsma.be"], BG:["FSC","bg_fsc@fsc.bg"],
+          HR:["HANFA","info@hanfa.hr"], CY:["CySEC","info@cysec.gov.cy"],
+          CZ:["Czech National Bank","podatelna@cnb.cz"], DK:["Finanstilsynet","finanstilsynet@ftnet.dk"],
+          EE:["Finantsinspektsioon","info@fi.ee"], FI:["FIN-FSA","kirjaamo@finanssivalvonta.fi"],
+          FR:["AMF",""], DE:["BaFin","poststelle@bafin.de"], GR:["HCMC","info@cmc.gov.gr"],
+          HU:["MNB","ugyfelszolgalat@mnb.hu"], IE:["Central Bank of Ireland","prospectus@centralbank.ie"],
+          IT:["CONSOB","protocollo@consob.it"], LV:["Latvijas Banka","info@bank.lv"],
+          LT:["Lietuvos bankas","info@lb.lt"], LU:["CSSF",""], MT:["MFSA","communications@mfsa.mt"],
+          NL:["AFM","info@afm.nl"], PL:["KNF","knf@knf.gov.pl"], PT:["CMVM","cmvm@cmvm.pt"],
+          RO:["ASF","office@asfromania.ro"], SK:["NBS","info@nbs.sk"], SI:["ATVP","info@atvp.si"],
+          ES:["CNMV",""], SE:["Finansinspektionen","finansinspektionen@fi.se"]
+        };
+        // Regulators that take public messages via a web form. FR/ES have no public email (form is the only path);
+        // BE has an email (kept in CC) but routes the public to a form too. [url, "only"|"also"].
+        var FORM = {
+          FR: ["https://www.amf-france.org/en/contact-us", "only"],
+          ES: ["https://www.cnmv.es/portal/inversor/consultas", "only"],
+          BE: ["https://www.fsma.be/en/consumer-contact-form", "also"]
+        };
+        var select = document.getElementById('rep-country');
+        var note = document.getElementById('rep-note');
+        var subjectInput = document.getElementById('rep-subject');
+        var ncaRow = document.getElementById('rep-nca');
+        var formBox = document.getElementById('rep-formonly');
+
+        function setNote(text, ok) { note.textContent = text; note.style.color = ok ? '#1D7A4A' : '#c4001a'; }
+
+        function updateReps() {
+          var code = select.value;
+          var nca = NCA[code];
+          if (nca && nca[1] && code !== 'IE') { // IE is already shown as an always-CC card
+            ncaRow.querySelector('.recipient-name').textContent = nca[0];
+            ncaRow.style.display = 'block';
+          } else {
+            ncaRow.style.display = 'none';
+          }
+          var f = FORM[code];
+          if (f) {
+            var name = nca ? nca[0] : 'your regulator';
+            document.getElementById('rep-formonly-text').textContent = f[1] === 'only'
+              ? name + ' doesn’t accept email from the public. To be heard in your country too, copy your message (button below) and submit it via their official contact form.'
+              : name + ' is CC’d, but it also routes the public to a contact form — submitting there as well helps get your message logged as a consumer contact.';
+            document.getElementById('rep-formonly-link').href = f[0];
+            formBox.style.display = 'block';
+          } else {
+            formBox.style.display = 'none';
+          }
+        }
+
+        function buildMsg() {
+          var code = select.value;
+          if (!code) return null;
+          var name = document.getElementById('rep-name').value.trim();
+          var why = document.getElementById('rep-why').value.trim();
+          var subject = subjectInput.value.trim();
+          var body = document.getElementById('rep-body').value.trim();
+          // Insert the personal line as a second paragraph, right after the greeting.
+          if (why) {
+            var idx = body.indexOf('\n\n');
+            body = (idx === -1) ? why + '\n\n' + body : body.slice(0, idx) + '\n\n' + why + body.slice(idx);
+          }
+          var country = (code !== 'OTHER') ? select.options[select.selectedIndex].text : '';
+          body += '\n\nYours sincerely,\n' + (name || 'A concerned member of the public') + (country ? '\n' + country : '');
+          var cc = [REP.MOF, REP.ESMA, REP.IE];
+          var nca = NCA[code];
+          if (nca && nca[1]) cc.push(nca[1]);
+          cc = cc.filter(function (a, i) { return cc.indexOf(a) === i; }); // dedup (Irish senders would double Ireland)
+          var bcc = document.getElementById('rep-petition').checked ? BCC_PETITION : BCC;
+          return { to: REP.CSSF, cc: cc, bcc: bcc, subject: subject, body: body };
+        }
+
+        function fallbackCopy(text) {
+          var t = document.createElement('textarea');
+          t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+          document.body.appendChild(t); t.focus(); t.select();
+          var ok = false;
+          try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+          document.body.removeChild(t);
+          return ok;
+        }
+
+        function send(mode) {
+          var m = buildMsg();
+          if (!m) { setNote('Please select your country first.', false); select.focus(); return; }
+          var ccJoined = m.cc.join(',');
+          if (mode === 'gmail') {
+            window.open('https://mail.google.com/mail/?view=cm&fs=1' +
+              '&to=' + encodeURIComponent(m.to) +
+              '&cc=' + encodeURIComponent(ccJoined) +
+              (m.bcc ? '&bcc=' + encodeURIComponent(m.bcc) : '') +
+              '&su=' + encodeURIComponent(m.subject) +
+              '&body=' + encodeURIComponent(m.body), '_blank', 'noopener');
+            setNote('Gmail should open in a new tab with the message ready. Press send there.', true);
+            return;
+          }
+          if (mode === 'copy') {
+            var block = 'To: ' + m.to + '\nCc: ' + ccJoined + (m.bcc ? '\nBcc: ' + m.bcc : '') + '\nSubject: ' + m.subject + '\n\n' + m.body;
+            var done = function () { setNote('Copied. Paste it into an email to the addresses shown alongside.', true); };
+            var fail = function () { setNote('Could not copy — select the message text and copy it manually.', false); };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(block).then(done, function () { fallbackCopy(block) ? done() : fail(); });
+            } else {
+              fallbackCopy(block) ? done() : fail();
+            }
+            return;
+          }
+          window.location.href = 'mailto:' + encodeURIComponent(m.to) +
+            '?cc=' + m.cc.map(encodeURIComponent).join(',') +
+            (m.bcc ? '&bcc=' + encodeURIComponent(m.bcc) : '') +
+            '&subject=' + encodeURIComponent(m.subject) +
+            '&body=' + encodeURIComponent(m.body);
+          setNote('Your email app should open with the message ready. Press send there to deliver it. If the message appears cut off (some email apps truncate long drafts), use “Copy message” instead and paste it in.', true);
+        }
+
+        select.addEventListener('change', updateReps);
+        form.addEventListener('submit', function (e) { e.preventDefault(); send('mailto'); });
+        document.getElementById('rep-gmail').addEventListener('click', function () { send('gmail'); });
+        document.getElementById('rep-copy').addEventListener('click', function () { send('copy'); });
+      })();
+      </script>
+    </div>
+  </div>
 </section>
 
 <!-- CONTACT - BIANCO -->
@@ -751,7 +1036,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
       <div class="b2"><span>Israel</span></div>
       <div class="b3"><span>Bonds</span></div>
     </div>
-    <div class="footer-sub">The law is clear. Stop financing international crimes. · Luxembourg · 2026</div>
+    <div class="footer-sub">The law is clear. Stop financing international crimes. · Luxembourg · 2026 · <a href="privacy.html" style="color:rgba(255,255,255,0.75);">Privacy</a></div>
   </div>
   <div class="footer-hash">#StopIsraelBonds</div>
   <div style="display:flex;gap:0.75rem;align-items:center;">
