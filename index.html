@@ -70,10 +70,33 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .hero-scroll { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #666; display: flex; align-items: center; gap: 8px; }
 .scroll-line { width: 1px; height: 44px; background: #999; display: block; }
 
+/* HERO UPDATE BANNER */
+.hero-update { margin-top: 1.75rem; max-width: 680px; display: flex; gap: 0.9rem; align-items: flex-start; padding: 1.1rem 1.35rem; border: 2px solid var(--green); border-radius: 8px; background: #f0f7f2; }
+.hero-update-tag { flex-shrink: 0; background: var(--green); color: var(--white); font-family: var(--body); font-weight: 800; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px; border-radius: 20px; margin-top: 2px; }
+.hero-update-text { font-size: 15px; color: #333; line-height: 1.6; }
+.hero-update-text strong { color: var(--black); font-weight: 700; }
+
 /* SECTION BASICS */
 section { padding: 6rem 2.5rem; }
 .section-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 800; margin-bottom: 1rem; font-family: var(--body); }
 .section-title { font-family: var(--display); font-weight: 900; font-size: clamp(42px, 5vw, 68px); text-transform: uppercase; line-height: 0.95; margin-bottom: 2.5rem; }
+
+/* UPDATE / VICTORY SECTION - BIANCO */
+.update { background: var(--white); border-top: 2px solid #e8e8e8; border-bottom: 2px solid #e8e8e8; }
+.update .section-label { color: var(--green); }
+.update .section-title { color: var(--black); }
+.update-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #e8e8e8; border: 2px solid #e8e8e8; border-radius: 10px; overflow: hidden; margin-top: 1rem; }
+.update-card { background: var(--white); padding: 2.25rem 2rem; }
+.update-tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; margin-bottom: 1rem; background: var(--green); color: var(--white); }
+.update-card:nth-child(2) .update-tag { background: var(--red); }
+.update-card:nth-child(3) .update-tag { background: var(--black); }
+.update-title { font-family: var(--display); font-weight: 900; font-size: 21px; text-transform: uppercase; color: var(--black); margin-bottom: 0.75rem; line-height: 1.15; }
+.update-text { font-size: 15px; color: #4a4a4a; line-height: 1.7; }
+.update-callout { margin-top: 2px; background: var(--green); padding: 2.25rem 2.5rem; border-radius: 0 0 8px 8px; display: flex; flex-direction: column; gap: 0.85rem; align-items: flex-start; }
+.update-callout-title { font-family: var(--display); font-weight: 900; font-size: 22px; text-transform: uppercase; color: var(--white); }
+.update-callout-text { font-size: 15px; color: rgba(255,255,255,0.95); line-height: 1.7; max-width: 640px; }
+.update-callout-btn { display: inline-block; background: var(--white); color: var(--green); font-family: var(--body); font-weight: 800; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 26px; border-radius: 20px; text-decoration: none; margin-top: 0.25rem; transition: opacity 0.2s; }
+.update-callout-btn:hover { opacity: 0.9; }
 
 /* FACTS - ROSSO */
 .facts { background: var(--red); }
@@ -143,11 +166,14 @@ section { padding: 6rem 2.5rem; }
 .do .section-label { color: var(--green); }
 .do .section-title { color: var(--black); }
 .do-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #e8e8e8; border: 2px solid #e8e8e8; border-radius: 10px; overflow: hidden; margin-top: 1rem; }
-.do-card { background: var(--white); padding: 2.5rem 2rem; }
+.do-card { background: var(--white); padding: 2.5rem 2rem; position: relative; }
 .do-num { font-family: var(--display); font-weight: 900; font-size: 52px; color: var(--green); opacity: 0.35; line-height: 1; margin-bottom: 1rem; }
 .do-title { font-family: var(--display); font-weight: 900; font-size: 20px; text-transform: uppercase; color: var(--black); margin-bottom: 0.75rem; line-height: 1.15; }
 .do-text { font-size: 16px; color: #4a4a4a; line-height: 1.7; }
 .do-tag { display: inline-block; margin-top: 1.25rem; background: var(--green); color: var(--white); font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; }
+.do-card.is-done { background: #f0f7f2; }
+.do-done-badge { display: inline-block; background: var(--green); color: var(--white); font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 1rem; }
+.do-card.is-done .do-num { opacity: 0.18; }
 
 /* RESOURCES - BIANCO */
 .resources { background: var(--white); border-top: 2px solid #e8e8e8; }
@@ -161,6 +187,21 @@ section { padding: 6rem 2.5rem; }
 .res-authors { font-size: 13px; color: #5e5e5e; }
 .res-link { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: var(--white); font-family: var(--body); font-weight: 800; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; border-radius: 20px; text-decoration: none; align-self: flex-start; transition: background 0.2s; }
 .res-link:hover { background: #155736; }
+.res-langs { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+.res-lang { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; background: var(--white); color: var(--green); border: 2px solid var(--green); font-family: var(--body); font-weight: 800; font-size: 12px; letter-spacing: 0.06em; padding: 8px 12px; border-radius: 20px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+.res-lang:hover { background: var(--green); color: var(--white); }
+.res-lang-soon { border-color: #cfcfcf; color: #9a9a9a; cursor: default; position: relative; }
+.res-lang-soon:hover { background: var(--white); color: #9a9a9a; }
+.res-lang-soon::after { content: "Coming soon"; position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%); background: var(--black); color: var(--white); font-size: 10px; letter-spacing: 0.05em; padding: 4px 8px; border-radius: 4px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.res-lang-soon:hover::after { opacity: 1; }
+.media-card { background: var(--white); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.media-item { padding-bottom: 1.1rem; border-bottom: 1px solid #e8e8e8; }
+.media-item:last-child { padding-bottom: 0; border-bottom: none; }
+.media-item-source { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); font-weight: 800; margin-bottom: 3px; }
+.media-item-title { font-family: var(--display); font-weight: 900; font-size: 17px; text-transform: uppercase; line-height: 1.2; }
+.media-item-title a { color: var(--black); text-decoration: none; }
+.media-item-title a:hover { color: var(--green); }
+.media-placeholder { font-size: 15px; color: #8a8a8a; font-style: italic; }
 
 /* ACTION - ROSSO */
 .action { background: var(--red); text-align: center; padding: 9rem 2.5rem; }
@@ -281,8 +322,16 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
   .hero-sub-block { margin-top: 1.75rem; }
   .hero-tagline { font-size: clamp(18px, 5.5vw, 24px); }
   .hero-sub { font-size: 15px; }
+  .hero-update { margin-top: 1.25rem; padding: 1rem; }
+  .hero-update-text { font-size: 14px; }
   .hero-bottom { margin-top: 2.5rem; }
   .hero-eyebrow { font-size: 11px; margin-bottom: 1rem; }
+
+  /* UPDATE */
+  .update-grid { grid-template-columns: 1fr; }
+  .update-card { padding: 2rem 1.5rem; }
+  .update-callout { padding: 1.75rem 1.5rem; }
+  .update-callout-title { font-size: 19px; }
 
   /* FACTS */
   .facts-grid { grid-template-columns: 1fr; }
@@ -325,7 +374,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
 
   /* RESOURCES */
   .resources-grid { grid-template-columns: 1fr; }
-  .res-card { padding: 2rem 1.5rem; }
+  .res-card, .media-card { padding: 2rem 1.5rem; }
   .res-title { font-size: 20px; }
   .res-desc { font-size: 15px; }
 
@@ -385,12 +434,12 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="nav-links">
+    <li><a href="#update">Latest</a></li>
     <li><a href="#facts">Facts</a></li>
     <li><a href="#law">The Law</a></li>
     <li><a href="#bonds">The Bonds</a></li>
-    <li><a href="#do">Luxembourg's Options</a></li>
+    <li><a href="#do">EU's Options</a></li>
     <li><a href="#resources">Resources</a></li>
-    <li><a href="#represent">Email Reps</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#action" class="nav-cta">Act Now</a></li>
   </ul>
@@ -422,19 +471,51 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
 <!-- HERO - ROSSO -->
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-grid" aria-hidden="true"></div>
-  <div class="hero-eyebrow">A civic campaign · Luxembourg · 2026</div>
+  <div class="hero-eyebrow">A civic campaign · 2026</div>
   <h1 class="hero-title" id="hero-title">
     <span class="b1"><span>Stop</span></span>
     <span class="b2"><span>Israel</span></span>
     <span class="b3"><span>Bonds</span></span>
   </h1>
   <div class="hero-sub-block">
-    <div class="hero-tagline">The law is clear. Stop financing international crimes.</div>
-    <div class="hero-sub"><strong>Luxembourg finances illegal occupation and war.</strong> International law demands it stops.</div>
+    <div class="hero-tagline">Luxembourg is stepping back. Now no EU state must step in.</div>
+    <div class="hero-sub"><strong>Luxembourg's approval of Israel bonds ends on 31 August 2026.</strong> International law demands that no other EU country takes its place.</div>
+    <div class="hero-update">
+      <span class="hero-update-tag">Update · July 2026</span>
+      <div class="hero-update-text"><strong>Luxembourg will not renew its approval of the Israel bonds prospectus</strong>, and the CSSF has refused a request from the Central Bank of Ireland to extend its role. The prospectus stays valid until 31 August 2026, and Israel can still seek approval from another EU country. <a href="#update" style="color:var(--green);font-weight:800;">Read what this means ↓</a></div>
+    </div>
   </div>
   <div class="hero-bottom">
     <div class="hero-hashtag">#StopIsraelBonds</div>
     <div class="hero-scroll"><span class="scroll-line"></span>Scroll</div>
+  </div>
+</section>
+
+<!-- UPDATE / VICTORY - BIANCO -->
+<section class="update" id="update">
+  <div class="section-label">Where things stand</div>
+  <h2 class="section-title">A win, but not the end</h2>
+  <div class="update-grid">
+    <div class="update-card">
+      <div class="update-tag">Confirmed</div>
+      <div class="update-title">Luxembourg will not renew</div>
+      <div class="update-text">Finance Minister Gilles Roth confirmed that the CSSF's authorisation will lapse on 31 August 2026 and will not be renewed. The CSSF has also refused a request from the Central Bank of Ireland to extend its role in approving the bonds.</div>
+    </div>
+    <div class="update-card">
+      <div class="update-tag">Not yet won</div>
+      <div class="update-title">The bonds can still move</div>
+      <div class="update-text">CSSF director Claude Marx described the decision as a matter of regulatory compliance, not politics. The prospectus stays valid until 31 August, and Israel remains free to seek approval from any of the EU's other member states, including Ireland, which has remained the prospectus's home state throughout.</div>
+    </div>
+    <div class="update-card">
+      <div class="update-tag">The new goal</div>
+      <div class="update-title">No country should take its place</div>
+      <div class="update-text">The campaign now asks every EU financial regulator, starting with Ireland, to commit publicly to refusing this prospectus, so it cannot simply relocate to wherever resistance is weakest.</div>
+    </div>
+  </div>
+  <div class="update-callout">
+    <div class="update-callout-title">How to email your representatives</div>
+    <div class="update-callout-text">Scroll down to "Contact your representatives", pick your country, and a ready-to-send letter opens in your own email app, addressed to the Central Bank of Ireland and the CSSF, with your national regulator and ESMA copied in. You review it, add your name, and press send yourself.</div>
+    <a href="#represent" class="update-callout-btn">Email your representatives ↓</a>
   </div>
 </section>
 
@@ -458,7 +539,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
     <div class="fact-card">
       <div class="fact-num">€417M</div>
       <div class="fact-label">raised in the EU since Oct 2023</div>
-      <div class="fact-desc">Between October 2023 and April 2025, €417 million in Israel Bonds were sold across France, Germany, Austria, Belgium and Ireland under CBI approval. Since September 2025, the CSSF has taken over as the approving authority.</div>
+      <div class="fact-desc">Between October 2023 and April 2025, €417 million in Israel Bonds were sold across France, Germany, Austria, Belgium and Ireland under CBI approval. Since September 2025, the CSSF has approved the prospectus, and has now confirmed it will not renew that approval past 31 August 2026.</div>
       <div class="fact-source">Central Bank of Ireland · Report 2025</div>
     </div>
   </div>
@@ -498,7 +579,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
         <div class="duty-num">04</div>
         <div>
           <div class="duty-title">Duty to Cooperate</div>
-          <div class="duty-text">All states must use their leverage to end the illegality. For Luxembourg, Europe's largest ESG hub and a global financial centre, that leverage is concrete and immediate.</div>
+          <div class="duty-text">All states must use their leverage to end the illegality. For EU financial centres, including Luxembourg and Ireland, that leverage is concrete and immediate.</div>
           <div class="duty-badge">Jus Cogens obligation · all states</div>
         </div>
       </div>
@@ -508,7 +589,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
         <div class="law-quote-text">"Inaction by Luxembourg is not an option. There are certain things we have to do."</div>
         <div class="law-quote-attr">Franz Fayot · MP Luxembourg · March 2026</div>
       </div>
-      <div class="law-note">In March 2026, two independent legal opinions from the University of Luxembourg and Utrecht University confirmed: <strong>grave violations of international law by Israel are beyond doubt. Luxembourg has concrete obligations to act.</strong></div>
+      <div class="law-note">In March 2026, two independent legal opinions from the University of Luxembourg and Utrecht University confirmed: <strong>grave violations of international law by Israel are beyond doubt. EU states have concrete obligations to act.</strong></div>
       <div class="law-note">On 22 September 2025, Luxembourg formally recognised the State of Palestine. <strong>A state cannot recognise a people's right to self-determination while providing the financial infrastructure to fund operations the ICJ has found plausibly amount to their genocide.</strong></div>
     </div>
   </div>
@@ -523,7 +604,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
       <p>Israel Bonds are <strong>not standard sovereign debt.</strong> They are structurally illiquid, non-negotiable instruments sold directly to retail investors, religious organisations and municipal funds, bypassing the institutional market discipline that correctly prices in wartime risk.</p>
       <p>The CSSF approved the prospectus on <strong>1 September 2025</strong> without prior consultation with Luxembourg's Ministry of Foreign Affairs. It wrote to Deputy Prime Minister Bettel only two weeks later to request the government's opinion.</p>
       <p><strong>The bond proceeds are fungible.</strong> They flow directly into Israel's general state budget with no ring-fencing from military expenditure, settlement construction, or any other state activity. Israel's own marketing, "Stand with Israel. Israel is at War," makes the purpose explicit.</p>
-      <p>Bond sales have ended in Belgium, Spain and Ireland. Under sustained political and legal pressure, Ireland's Central Bank transferred the prospectus to Luxembourg. <strong>The CSSF is now the last active gateway for Israel Bonds in the EU.</strong></p>
+      <p>Bond sales have ended in Belgium, Spain and Ireland's own market. Under sustained political and legal pressure, Ireland's Central Bank transferred approval of the prospectus to Luxembourg's CSSF, which has now confirmed it will not renew that approval when it expires on 31 August 2026. <strong>Ireland remains the prospectus's home member state, and could still be asked to approve a new one, or another EU country could take its place.</strong></p>
     </div>
     <div>
       <div class="flow">
@@ -534,7 +615,7 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
         <div class="flow-arrow">↓</div>
         <div class="flow-step">
           <div class="flow-step-label">Approved by, transferred from Ireland</div>
-          <div class="flow-step-title">CSSF · Luxembourg · 1 Sep 2025</div>
+          <div class="flow-step-title">CSSF · Luxembourg · Not renewed after 31 Aug 2026</div>
         </div>
         <div class="flow-arrow">↓</div>
         <div class="flow-step">
@@ -594,44 +675,44 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
 
 <!-- WHAT TO DO - BIANCO -->
 <section class="do" id="do">
-  <div class="section-label">Concrete action</div>
-  <h2 class="section-title">What Luxembourg<br>can do now</h2>
+  <div class="section-label">EU's options</div>
+  <h2 class="section-title">What the EU<br>can do now</h2>
   <div class="do-grid">
-    <div class="do-card">
-      <div class="do-num">01</div>
-      <div class="do-title">Suspend and refuse bond prospectuses</div>
-      <div class="do-text">The CSSF must immediately suspend the 1 September 2025 approval and refuse renewal. It has supervisory power to require supplemental information and suspend offers under Art. 23 of the Prospectus Regulation.</div>
+    <div class="do-card is-done">
+      <div class="do-done-badge">✓ Done · July 2026</div>
+      <div class="do-title">Luxembourg refused renewal</div>
+      <div class="do-text">The CSSF confirmed it will not renew the prospectus when it expires on 31 August 2026, and has refused the Central Bank of Ireland's request to extend its role in approving the bonds. This shows regulators do have the discretion to say no.</div>
       <div class="do-tag">Financial regulator</div>
     </div>
     <div class="do-card">
       <div class="do-num">02</div>
-      <div class="do-title">Cooperate fully with the ICC</div>
-      <div class="do-text">Luxembourg must support the International Criminal Court without reservation. An arrest warrant has been issued for Israel's Prime Minister. Cooperation with international justice is a legal obligation, not a choice.</div>
-      <div class="do-tag">International law</div>
-    </div>
-    <div class="do-card">
-      <div class="do-num">03</div>
-      <div class="do-title">End trade with illegal settlements</div>
-      <div class="do-text">Both legal opinions are clear: Luxembourg must prevent trade between enterprises here and companies operating in illegal Israel settlements. The Luxembourg Fonds de Compensation remains invested in companies on the OHCHR database.</div>
-      <div class="do-tag">Trade policy</div>
-    </div>
-    <div class="do-card">
-      <div class="do-num">04</div>
-      <div class="do-title">Commission an independent legal study</div>
-      <div class="do-text">The CSSF must commission an urgent independent study on Luxembourg's international law obligations, assessing the duty to prevent, non-assistance, and the adequacy of existing supervisory tools for sovereign issuers in conflict situations.</div>
-      <div class="do-tag">Due diligence</div>
-    </div>
-    <div class="do-card">
-      <div class="do-num">05</div>
-      <div class="do-title">Coordinate with Ireland and notify ESMA</div>
-      <div class="do-text">Ireland remains the home state for Israel bond prospectuses. If Luxembourg and Ireland act together and notify ESMA, Israel cannot sell bonds within the EU. Fragmented supervision must end.</div>
+      <div class="do-title">No EU state should take Luxembourg's place</div>
+      <div class="do-text">Ireland, the prospectus's home member state throughout, must refuse to resume its role and must refuse to nominate or approve any other EU country as the new home authority. Every national regulator should commit to the same, so the bonds cannot simply relocate.</div>
       <div class="do-tag">EU coordination</div>
     </div>
     <div class="do-card">
+      <div class="do-num">03</div>
+      <div class="do-title">Notify ESMA and coordinate supervision</div>
+      <div class="do-text">If EU regulators act together and notify ESMA, Israel cannot sell bonds within the EU. Fragmented, state-by-state supervision is exactly what allows the prospectus to hop from Ireland to Luxembourg and, potentially, onward.</div>
+      <div class="do-tag">EU coordination</div>
+    </div>
+    <div class="do-card">
+      <div class="do-num">04</div>
+      <div class="do-title">Cooperate fully with the ICC</div>
+      <div class="do-text">EU member states must support the International Criminal Court without reservation. An arrest warrant has been issued for Israel's Prime Minister. Cooperation with international justice is a legal obligation, not a choice.</div>
+      <div class="do-tag">International law</div>
+    </div>
+    <div class="do-card">
+      <div class="do-num">05</div>
+      <div class="do-title">End trade with illegal settlements</div>
+      <div class="do-text">Independent legal opinions are clear: EU states must prevent trade between enterprises within their jurisdiction and companies operating in illegal Israeli settlements. Public pension and reserve funds across the EU, including Luxembourg's Fonds de Compensation, remain invested in companies on the OHCHR database.</div>
+      <div class="do-tag">Trade policy</div>
+    </div>
+    <div class="do-card">
       <div class="do-num">06</div>
-      <div class="do-title">Adopt national restrictive measures</div>
-      <div class="do-text">At state level, Luxembourg can adopt national or EU restrictive measures to ensure its financial sector does not contribute to internationally wrongful conduct, as it did in response to Russia's invasion of Ukraine.</div>
-      <div class="do-tag">State policy</div>
+      <div class="do-title">Commission independent legal studies</div>
+      <div class="do-text">Every EU national regulator should commission an urgent independent study on its own international law obligations, assessing the duty to prevent, non-assistance, and the adequacy of existing supervisory tools for sovereign issuers in conflict situations.</div>
+      <div class="do-tag">Due diligence</div>
     </div>
   </div>
 </section>
@@ -646,6 +727,15 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
       <div class="res-title">The Approval of the Israel Bonds Prospectus in Luxembourg</div>
       <div class="res-desc">A comprehensive legal and financial analysis covering the prospectus mechanism, Israel's war economy, the international legal framework, and concrete recommendations for the CSSF and the Luxembourg government.</div>
       <div class="res-authors">Anastasopoulou · Obeidat (Nashama) · Patone (ANPI Lussemburgo) · Sesti (LetzActForPalestine) · Supported by Collectives for Palestine</div>
+      <div class="res-langs">
+        <a href="https://drive.google.com/file/d/1KEwMgL9lI8MxxIv0dcnvae7BPZ0C1KZ7/view?usp=sharing" target="_blank" rel="noopener" class="res-lang">EN</a>
+        <!-- TODO: replace href="#" with the FR report link when ready -->
+        <a href="#" class="res-lang res-lang-soon" aria-disabled="true" onclick="return false;">FR</a>
+        <!-- TODO: replace href="#" with the IT report link when ready -->
+        <a href="#" class="res-lang res-lang-soon" aria-disabled="true" onclick="return false;">IT</a>
+        <!-- TODO: replace href="#" with the DE report link when ready -->
+        <a href="#" class="res-lang res-lang-soon" aria-disabled="true" onclick="return false;">DE</a>
+      </div>
       <a href="https://drive.google.com/file/d/1KEwMgL9lI8MxxIv0dcnvae7BPZ0C1KZ7/view?usp=sharing" target="_blank" rel="noopener" class="res-link">Download Report ↗</a>
     </div>
     <div class="res-card">
@@ -653,6 +743,39 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
       <div class="res-title">Conference on Luxembourg's Obligations and the Israel Bonds</div>
       <div class="res-desc">Legal experts, civil society representatives and political figures discuss Luxembourg's obligations under international law and the role of the CSSF in facilitating Israel's access to European capital markets.</div>
       <a href="https://www.youtube.com/watch?v=pv1vqYp2PYA&t=15522s" target="_blank" rel="noopener" class="res-link">Watch on YouTube ↗</a>
+    </div>
+    <div class="res-card media-card" style="grid-column: 1 / -1;">
+      <div class="res-type">In the media</div>
+      <div class="res-title">Press coverage</div>
+      <div class="media-item">
+        <div class="media-item-source">Middle East Eye · 24 July 2026</div>
+        <div class="media-item-title"><a href="https://www.middleeasteye.net/news/luxembourg-will-not-renew-approval-israeli-war-bonds-finance-minister-confirms" target="_blank" rel="noopener">Luxembourg will not renew approval for Israeli war bonds, finance minister confirms ↗</a></div>
+      </div>
+      <div class="media-item">
+        <div class="media-item-source">Middle East Eye · 12 June 2026</div>
+        <div class="media-item-title"><a href="https://www.middleeasteye.net/news/illegal-and-immoral-how-luxembourg-became-eu-hub-israeli-war-bonds" target="_blank" rel="noopener">‘Illegal and immoral’: How Luxembourg became the EU hub for Israeli war bonds ↗</a></div>
+      </div>
+      <div class="media-item">
+        <div class="media-item-source">InsideOver (IT) · 1 July 2026</div>
+        <div class="media-item-title"><a href="https://it.insideover.com/economia/israel-bonds-lussemburgo-finanzia-attacchi-gaza.html" target="_blank" rel="noopener">Israel Bonds: il Lussemburgo e i capitali per attaccare Gaza ↗</a></div>
+      </div>
+      <div class="media-item">
+        <div class="media-item-source">PassaParola Magazine (IT) · 24 June 2026</div>
+        <div class="media-item-title"><a href="https://passaparola.info/web/2026/06/24/come-la-tecnocrazia-lussemburghese-finanzia-la-guerra-permanente-di-israele/" target="_blank" rel="noopener">Come la tecnocrazia lussemburghese finanzia la guerra permanente di Israele ↗</a></div>
+      </div>
+      <!-- TODO: add FR/DE media coverage here in the same media-item pattern when available. -->
+    </div>
+    <div class="res-card media-card" style="grid-column: 1 / -1;">
+      <div class="res-type">Allied campaigns</div>
+      <div class="res-title">Other campaigns to follow</div>
+      <div class="media-item">
+        <div class="media-item-source">Amnesty International · July 2026 statement</div>
+        <div class="media-item-title"><a href="https://www.amnesty.org/en/latest/news/2026/07/europe-iopt-eu-states-allowing-sale-of-israel-bonds-in-europe-risk-complicity-in-ongoing-genocide-in-gaza/" target="_blank" rel="noopener">EU states allowing the sale of Israel Bonds in Europe risk complicity in ongoing genocide in Gaza ↗</a></div>
+      </div>
+      <div class="media-item">
+        <div class="media-item-source">Jewish Voice for Peace · Campaign</div>
+        <div class="media-item-title"><a href="https://www.jewishvoiceforpeace.org/resource/break-the-bonds-divest/" target="_blank" rel="noopener">Break the Bonds, divest from Israel Bonds ↗</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -665,19 +788,18 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
     <div class="b2"><span>Israel</span></div>
     <div class="b3"><span>Bonds</span></div>
   </div>
-  <p class="action-tagline">The law is clear. Stop financing international crimes.</p>
-  <p class="action-desc">Share this campaign. Pressure your representatives. Demand Luxembourg's financial sector aligns with what international law demands.</p>
+  <p class="action-tagline">Luxembourg is stepping back. Now no EU state must step in.</p>
+  <p class="action-desc">Email the regulators who can stop this. Share this campaign. Pressure your representatives to make sure no other EU country takes Luxembourg's place.</p>
   <div class="btns">
-    <button type="button" class="btn-w" id="share-btn">Share the campaign</button>
-    <a href="#represent" class="btn-o">Email the regulators</a>
-    <a href="mailto:?subject=Stop%20Israel%20Bonds%20%E2%80%94%20a%20message%20to%20my%20representative&body=Dear%20%5BMP%20name%5D%2C%0A%0AI%20am%20writing%20about%20Luxembourg%27s%20approval%20of%20Israel%20Bonds%20by%20the%20CSSF.%20%0A%0AMore%20at%20https%3A%2F%2Fstopisraelbonds.com" class="btn-o">Write to your MP</a>
+    <a href="#represent" class="btn-w">Email the regulators</a>
+    <button type="button" class="btn-o" id="share-btn">Share the campaign</button>
   </div>
   <script>
   (function () {
     var btn = document.getElementById('share-btn');
     if (!btn) return;
     btn.addEventListener('click', async function () {
-      var data = { title: 'Stop Israel Bonds', text: 'The law is clear. Stop financing international crimes.', url: window.location.href };
+      var data = { title: 'Stop Israel Bonds', text: 'Luxembourg is stepping back. Now no EU state must step in.', url: window.location.href };
       if (navigator.share) {
         try { await navigator.share(data); } catch (e) { /* user cancelled */ }
       } else if (navigator.clipboard) {
@@ -700,9 +822,13 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
   <h2 class="section-title">Contact your<br>representatives</h2>
   <div class="represent-layout">
     <div>
-      <p class="represent-intro">Tell the regulators who can stop this what is happening in Luxembourg. Your message opens in your own email client, addressed and ready &mdash; <strong>you</strong> press send, so it arrives as a real letter from a real person.</p>
-      <p class="represent-intro">Every message goes to the <strong>CSSF</strong>, the <strong>Luxembourg Ministry of Finance</strong>, <strong>ESMA</strong> and Ireland's <strong>Central Bank</strong> &mdash; the prospectus's home authority. Pick your country and we add your national financial regulator &mdash; the body that can refuse to passport these bonds.</p>
+      <p class="represent-intro">Tell the regulators who can stop this what is happening. Your message opens in your own email client, addressed and ready, <strong>you</strong> press send, so it arrives as a real letter from a real person.</p>
+      <p class="represent-intro">Every message goes to the <strong>Central Bank of Ireland</strong> and the <strong>CSSF</strong>, and is copied to the <strong>Luxembourg Ministry of Finance</strong> and <strong>ESMA</strong>, the EU's securities regulator. Pick your country and we add your national financial regulator, the body that can refuse to passport these bonds.</p>
       <div class="represent-recipients">
+        <div class="recipient">
+          <div class="recipient-label">To &middot; Home member state regulator</div>
+          <div class="recipient-name">Central Bank of Ireland</div>
+        </div>
         <div class="recipient">
           <div class="recipient-label">To &middot; Luxembourg regulator</div>
           <div class="recipient-name">CSSF</div>
@@ -714,10 +840,6 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
         <div class="recipient">
           <div class="recipient-label">Cc &middot; EU securities regulator</div>
           <div class="recipient-name">ESMA</div>
-        </div>
-        <div class="recipient">
-          <div class="recipient-label">Cc &middot; Home member state</div>
-          <div class="recipient-name">Central Bank of Ireland</div>
         </div>
         <div class="recipient" id="rep-nca" style="display:none;">
           <div class="recipient-label">Cc &middot; Your national regulator</div>
@@ -776,36 +898,34 @@ footer { background: var(--black); padding: 2.5rem; display: flex; align-items: 
           <p class="form-hint">Optional but powerful: a sentence in your own words makes this a personal letter that gets logged and counted individually, instead of being filtered as a mass campaign.</p>
         </div>
         <div class="form-group">
-          <label class="form-label" for="rep-subject">Subject (edit it — varied subjects land better)</label>
-          <input class="form-input" type="text" id="rep-subject" name="subject" value="The role of the Commission de Surveillance du Secteur Financier in enabling the sale of Israel bonds within the European Union">
+          <label class="form-label" for="rep-subject">Subject (edit it, varied subjects land better)</label>
+          <input class="form-input" type="text" id="rep-subject" name="subject" value="The role of the Central Bank of Ireland and the CSSF in the sale of Israel bonds within the European Union">
         </div>
         <div class="form-group">
           <label class="form-label" for="rep-body">Your message (edit freely)</label>
           <textarea class="form-textarea" id="rep-body" style="min-height:260px;">Dear Director General,
 
-As citizens/residents of EU countries, we are writing to express our deep concern about the role of the Commission de Surveillance du Secteur Financier (CSSF) in enabling Israel bonds to be sold in the EU.
+We welcome the news that Luxembourg's Commission de Surveillance du Secteur Financier (CSSF) will not renew its approval of the Israel bonds prospectus when it expires on 31 August 2026, and that the CSSF has refused the Central Bank of Ireland's request to extend that arrangement. This is a significant step. But it is not the end of the matter: the prospectus remains valid until 31 August, and the State of Israel remains free to seek a new home authority among any of the EU's 27 member states, including Ireland, which has remained the prospectus's home member state throughout.
 
-The CSSF's approval of the Israel bonds prospectus documentation, which lacks crucial information, raises important legal and moral issues.
+As citizens/residents of EU countries, we are writing to express our deep concern about the role that the Central Bank of Ireland and the CSSF have played, and that any EU national competent authority could still play, in enabling Israel bonds to be sold in the EU.
 
 The 'Use of Proceeds' in section 8 of the prospectus should clarify that 'general financing purposes of the Issuer' includes, at least in part since there is no ring-fencing away from military expenditure, the financing of its war in Gaza, as confirmed by the CEO of Israel Bonds, who is also a member of Israel Bonds' international board of directors. It includes as well helping to support Israeli settlements in illegally occupied Palestinian territory, as documented by The Times of Israel. The legal opinion produced by Law for Palestine makes clear that approving the bond prospectus constitutes prohibited "aid or assistance" because the bonds' fungible proceeds enhance Israel's overall budget, directly supporting its unlawful activities.
 
-Although the prospectus documentation makes reference to the International Court of Justice (ICJ) provisional measures of January 26, March 28 and May 24 2024, there is no clear statement that the ICJ found it plausible that there is a real and imminent risk that irreparable prejudice will be caused to the rights of Palestinians under the Genocide Convention, which obliges all contracting parties, including Luxembourg, to prevent genocide.
+Although the prospectus documentation makes reference to the International Court of Justice (ICJ) provisional measures of January 26, March 28 and May 24 2024, there is no clear statement that the ICJ found it plausible that there is a real and imminent risk that irreparable prejudice will be caused to the rights of Palestinians under the Genocide Convention, which obliges all contracting parties, including Ireland, to prevent genocide.
 
 On this regard, the prospectus simply states that "Israel maintains that it continues to act in full compliance with applicable law", without offering any concrete example of how these provisional measures are actually implemented and what the consequences of lack of compliance might be.
 
-There is no mention of the ICJ advisory opinion of 19 July 2024, which ruled that Israel's presence in the Occupied Palestinian Territory (OPT — defined as the West Bank, East Jerusalem and the Gaza Strip) is illegal, or UN General Assembly Resolution A/RES/ES-10/24, based on this ICJ advisory opinion, which was voted for by Luxembourg and overwhelmingly adopted on 18 September 2024. From the advisory opinion and adopted resolution, it is clear that states are legally obligated not to render aid or assistance in maintaining the situation created by Israel's illegal presence in the OPT, and must take steps to ensure this obligation applies to their nationals, companies and entities under their jurisdiction, as well as their authorities.
+There is no mention of the ICJ advisory opinion of 19 July 2024, which ruled that Israel's presence in the Occupied Palestinian Territory (OPT, defined as the West Bank, East Jerusalem and the Gaza Strip) is illegal, or UN General Assembly Resolution A/RES/ES-10/24, based on this ICJ advisory opinion, which was overwhelmingly adopted on 18 September 2024. From the advisory opinion and adopted resolution, it is clear that states are legally obligated not to render aid or assistance in maintaining the situation created by Israel's illegal presence in the OPT, and must take steps to ensure this obligation applies to their nationals, companies and entities under their jurisdiction, as well as their authorities.
 
-The Risk Factors section (section 2 in the prospectus) should include the real risks of negative economic outcomes for Israel — possible sanctions, trade embargoes, liability for reparations, etc. — resulting from the ICJ rulings and UN resolution mentioned above, and the pending decision of the ICJ in the genocide case against Israel brought by South Africa.
+The Risk Factors section (section 2 in the prospectus) should include the real risks of negative economic outcomes for Israel, possible sanctions, trade embargoes, liability for reparations, etc., resulting from the ICJ rulings and UN resolution mentioned above, and the pending decision of the ICJ in the genocide case against Israel brought by South Africa.
 
 Without this information, investors may not realise that by buying Israeli bonds they are at risk of aiding Israel financially to maintain and expand its occupation of Palestinian territory that the ICJ has ruled is illegal, and to undertake a "war campaign" which the ICJ considers is plausibly genocidal and in which the International Criminal Court deems Israel to have committed crimes against humanity and war crimes.
 
-By failing in its duty to ensure the completeness of the prospectus documentation, to assess material risks, including environmental, social and governance risks, and to act in accordance with fundamental human rights protected by European and international treaties, the CSSF may be failing in its duty under the EU Prospectus Regulation to protect European securities market participants from potential future liabilities as enablers of Israeli violations of international law.
-
-We therefore respectfully demand that you ensure that all measures at the CSSF's disposal are taken, as a matter of urgency, to end this situation and end the CSSF's role in enabling the sale of Israel bonds within the EU.</textarea>
+We therefore respectfully demand that the Central Bank of Ireland confirm, publicly and without ambiguity, that it will not extend its role as home authority for the Israel bonds prospectus under any circumstance, and that every EU national competent authority commit to refusing to become the home state for this prospectus, so that Israel Bonds cannot simply relocate to wherever resistance is weakest.</textarea>
         </div>
         <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:10px;">
           <input type="checkbox" id="rep-petition" style="margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--green);">
-          <label class="form-hint" for="rep-petition" style="margin:0;cursor:pointer;">Add my name to the public petition. Every email is blind-copied to the campaign so we can follow how the action is going — the regulators never see this, and you can remove the Bcc in your draft if you prefer. Ticking this box marks your copy “+petition”, counting you as a signatory; we may publish your name, never your email address or message. See our <a href="privacy.html">privacy notice</a>.</label>
+          <label class="form-hint" for="rep-petition" style="margin:0;cursor:pointer;">Add my name to the public petition. Every email is blind-copied to the campaign so we can follow how the action is going, the regulators never see this, and you can remove the Bcc in your draft if you prefer. Ticking this box marks your copy “+petition”, counting you as a signatory; we may publish your name, never your email address or message. See our <a href="privacy.html">privacy notice</a>.</label>
         </div>
         <div class="form-actions">
           <button type="submit" class="form-submit">Open in email app →</button>
@@ -818,16 +938,16 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
       (function () {
         var form = document.getElementById('rep-form');
         if (!form) return;
-        // Recipients. Researched from each body's official site 2026-07-02 — re-verify before relying on them.
-        // Ireland is CC'd on every message: it remains the home member state for the prospectus (it transferred
-        // approval to the CSSF), so the "coordinate with Ireland and notify ESMA" demand names it directly.
-        var REP = { CSSF: "direction@cssf.lu", MOF: "ministere-finances@fi.etat.lu", ESMA: "info@esma.europa.eu", IE: "prospectus@centralbank.ie" };
+        // Recipients. Researched from each body's official site 2026-07-02, re-verify before relying on them.
+        // Ireland (home member state) and the CSSF (Luxembourg) are both primary "To" recipients: Ireland
+        // because it remains the prospectus's home authority, the CSSF because it approved the current one.
+        var REP = { CSSF: "direction@cssf.lu", IE: "prospectus@centralbank.ie", MOF: "ministere-finances@fi.etat.lu", ESMA: "info@esma.europa.eu" };
         // Every send is blind-copied to the campaign (disclosed in the label + privacy notice; the user can
         // delete the Bcc in their draft). Petition opt-ins get the +petition marker so signers are filterable:
         // filter to:stopisraelbonds+petition@gmail.com to count them.
         var BCC = "stopisraelbonds@gmail.com", BCC_PETITION = "stopisraelbonds+petition@gmail.com";
         // EU national competent authorities (the CSSF-equivalent in each country).
-        // "" email = no public address (web-form only: FR, ES) or already covered by CSSF (LU) — send proceeds without it.
+        // "" email = no public address (web-form only: FR, ES) or already covered above (LU, IE), send proceeds without it.
         var NCA = {
           AT:["FMA","fma@fma.gv.at"], BE:["FSMA","info.fin@fsma.be"], BG:["FSC","bg_fsc@fsc.bg"],
           HR:["HANFA","info@hanfa.hr"], CY:["CySEC","info@cysec.gov.cy"],
@@ -859,7 +979,7 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
         function updateReps() {
           var code = select.value;
           var nca = NCA[code];
-          if (nca && nca[1] && code !== 'IE') { // IE is already shown as an always-CC card
+          if (nca && nca[1] && code !== 'IE') { // IE is already shown as an always-To card
             ncaRow.querySelector('.recipient-name').textContent = nca[0];
             ncaRow.style.display = 'block';
           } else {
@@ -870,7 +990,7 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
             var name = nca ? nca[0] : 'your regulator';
             document.getElementById('rep-formonly-text').textContent = f[1] === 'only'
               ? name + ' doesn’t accept email from the public. To be heard in your country too, copy your message (button below) and submit it via their official contact form.'
-              : name + ' is CC’d, but it also routes the public to a contact form — submitting there as well helps get your message logged as a consumer contact.';
+              : name + ' is CC’d, but it also routes the public to a contact form, submitting there as well helps get your message logged as a consumer contact.';
             document.getElementById('rep-formonly-link').href = f[0];
             formBox.style.display = 'block';
           } else {
@@ -892,12 +1012,13 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
           }
           var country = (code !== 'OTHER') ? select.options[select.selectedIndex].text : '';
           body += '\n\nYours sincerely,\n' + (name || 'A concerned member of the public') + (country ? '\n' + country : '');
-          var cc = [REP.MOF, REP.ESMA, REP.IE];
+          var to = [REP.CSSF, REP.IE];
+          var cc = [REP.MOF, REP.ESMA];
           var nca = NCA[code];
-          if (nca && nca[1]) cc.push(nca[1]);
-          cc = cc.filter(function (a, i) { return cc.indexOf(a) === i; }); // dedup (Irish senders would double Ireland)
+          if (nca && nca[1] && code !== 'IE') cc.push(nca[1]); // IE is already in "to", avoid duplicating it
+          cc = cc.filter(function (a, i) { return cc.indexOf(a) === i; }); // dedup
           var bcc = document.getElementById('rep-petition').checked ? BCC_PETITION : BCC;
-          return { to: REP.CSSF, cc: cc, bcc: bcc, subject: subject, body: body };
+          return { to: to, cc: cc, bcc: bcc, subject: subject, body: body };
         }
 
         function fallbackCopy(text) {
@@ -913,10 +1034,11 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
         function send(mode) {
           var m = buildMsg();
           if (!m) { setNote('Please select your country first.', false); select.focus(); return; }
+          var toJoined = m.to.join(',');
           var ccJoined = m.cc.join(',');
           if (mode === 'gmail') {
             window.open('https://mail.google.com/mail/?view=cm&fs=1' +
-              '&to=' + encodeURIComponent(m.to) +
+              '&to=' + encodeURIComponent(toJoined) +
               '&cc=' + encodeURIComponent(ccJoined) +
               (m.bcc ? '&bcc=' + encodeURIComponent(m.bcc) : '') +
               '&su=' + encodeURIComponent(m.subject) +
@@ -925,9 +1047,9 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
             return;
           }
           if (mode === 'copy') {
-            var block = 'To: ' + m.to + '\nCc: ' + ccJoined + (m.bcc ? '\nBcc: ' + m.bcc : '') + '\nSubject: ' + m.subject + '\n\n' + m.body;
+            var block = 'To: ' + toJoined + '\nCc: ' + ccJoined + (m.bcc ? '\nBcc: ' + m.bcc : '') + '\nSubject: ' + m.subject + '\n\n' + m.body;
             var done = function () { setNote('Copied. Paste it into an email to the addresses shown alongside.', true); };
-            var fail = function () { setNote('Could not copy — select the message text and copy it manually.', false); };
+            var fail = function () { setNote('Could not copy, select the message text and copy it manually.', false); };
             if (navigator.clipboard && navigator.clipboard.writeText) {
               navigator.clipboard.writeText(block).then(done, function () { fallbackCopy(block) ? done() : fail(); });
             } else {
@@ -935,7 +1057,7 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
             }
             return;
           }
-          window.location.href = 'mailto:' + encodeURIComponent(m.to) +
+          window.location.href = 'mailto:' + toJoined.split(',').map(encodeURIComponent).join(',') +
             '?cc=' + m.cc.map(encodeURIComponent).join(',') +
             (m.bcc ? '&bcc=' + encodeURIComponent(m.bcc) : '') +
             '&subject=' + encodeURIComponent(m.subject) +
@@ -959,7 +1081,7 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
   <h2 class="section-title">Connect with us</h2>
   <div class="contact-layout">
     <div>
-      <p class="contact-intro">Follow the campaign, share the message, and reach out directly. Together we can pressure Luxembourg's institutions to act.</p>
+      <p class="contact-intro">Follow the campaign, share the message, and reach out directly. Together we can pressure the EU's financial institutions to act.</p>
       <div class="contact-socials">
         <a href="mailto:stopisraelbonds@gmail.com" class="social-link">
           <div class="social-icon email">
@@ -1036,7 +1158,7 @@ We therefore respectfully demand that you ensure that all measures at the CSSF's
       <div class="b2"><span>Israel</span></div>
       <div class="b3"><span>Bonds</span></div>
     </div>
-    <div class="footer-sub">The law is clear. Stop financing international crimes. · Luxembourg · 2026 · <a href="privacy.html" style="color:rgba(255,255,255,0.75);">Privacy</a></div>
+    <div class="footer-sub">The law is clear. Stop financing international crimes. · 2026 · <a href="privacy.html" style="color:rgba(255,255,255,0.75);">Privacy</a></div>
   </div>
   <div class="footer-hash">#StopIsraelBonds</div>
   <div style="display:flex;gap:0.75rem;align-items:center;">
